@@ -6,7 +6,50 @@ using System.Threading.Tasks;
 
 namespace OnBreak.BC
 {
-    class TipoAmbientacion
+    public class TipoAmbientacion
     {
+        public int IdTipoAmbientacion { get; set; }
+        public string Descripcion { get; set; }
+
+        public TipoAmbientacion()
+        {
+            this.Init();
+        }
+
+        private void Init()
+        {
+            IdTipoAmbientacion = 0;
+            Descripcion = string.Empty;
+        }
+        public List<TipoAmbientacion> ReadAll()
+        {
+            //Crear una conexión al Entities
+            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            try
+            {
+                //Crear una lista de DATOS
+                List<BD.TipoAmbientacion> listaDatos = bd.TipoAmbientacion.ToList();
+                //Crear una lista de NEGOCIO
+                List<TipoAmbientacion> listaNegocio = GenerarListado(listaDatos);
+                return listaNegocio;
+            }
+            catch (Exception)
+            {
+                return new List<TipoAmbientacion>();
+            }
+        }
+
+        private List<TipoAmbientacion> GenerarListado(List<BD.TipoAmbientacion> listaDatos)
+        {
+            List<TipoAmbientacion> listaNegocio = new List<TipoAmbientacion>();
+            foreach (BD.TipoAmbientacion datos in listaDatos)
+            {
+                TipoAmbientacion negocio = new TipoAmbientacion();
+                CommonBC.Syncronize(datos, negocio);
+                listaNegocio.Add(negocio);
+            }
+            return listaNegocio;
+        }
+
     }
 }
