@@ -157,9 +157,6 @@ namespace OnBreak.BC
                 clientes.LeerDescripcionAct(clientes.IdActividadEmpresa);
                 clientes.LeerDescripcionTipo(clientes.IdTipoEmpresa);
 
-                clientes.IdTipoEmpresa = 0;
-                clientes.IdActividadEmpresa = 0;
-
                 listaNegocio.Add(clientes);
             }
             return listaNegocio;

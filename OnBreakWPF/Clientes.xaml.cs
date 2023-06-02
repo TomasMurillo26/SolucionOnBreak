@@ -25,20 +25,24 @@ namespace OnBreakWPF
     {
         public Clientes()
         {
+            Cliente cliente = new Cliente();
             InitializeComponent();
-            GridClientes.ItemsSource = null;
+            GridClientes.ItemsSource = cliente.ReadAll();
             txtRut1.SetValue(TextBoxHelper.WatermarkProperty, "Ingrese RUT");
             cboActividadEmpresa.SetValue(TextBoxHelper.WatermarkProperty, "Seleccione");
             cboTipoEmpresa.SetValue(TextBoxHelper.WatermarkProperty, "Seleccione");
             LimpiarControles();
+            txtRut.IsReadOnly = true;
 
         }
 
         private void LimpiarControles()
         {
             /* Limpia los controles de texto */
+            Cliente cliente = new Cliente();
             CargarActividadEmpresas();
             CargarTipoEmpresas();
+            GridClientes.ItemsSource = cliente.ReadAll();
         }
 
         private void CargarActividadEmpresas()
@@ -74,8 +78,6 @@ namespace OnBreakWPF
             GridClientes.ItemsSource = null;
             Cliente cliente = new Cliente();
 
-            
-
             if(cboActividadEmpresa.SelectedItem != null && cboTipoEmpresa.SelectedItem != null)
             {
                 GridClientes.ItemsSource = cliente.FiltrarPorTipoYActividadEmpresa((int)cboActividadEmpresa.SelectedValue, (int)cboTipoEmpresa.SelectedValue);
@@ -105,12 +107,14 @@ namespace OnBreakWPF
             GridClientes.ItemsSource = cliente.ReadAll();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             AgregarCliente agregarCliente = new AgregarCliente();
             this.Close();
             agregarCliente.Show();
         }
+
+
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -118,6 +122,66 @@ namespace OnBreakWPF
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Clean(object sender, RoutedEventArgs e)
+        {
+            LimpiarControles();
+        }
+
+        private async void Button_Eliminar_Click(object sender, RoutedEventArgs e)
+        {
+            Cliente datos = (Cliente)GridClientes.SelectedItem;
+
+            if(datos == null)
+            {
+                await this.ShowMessageAsync("Alerta", "Debes seleccionar un cliente.");
+                return;
+            }
+
+            Cliente cliente = new Cliente()
+            {
+                RutCliente = datos.RutCliente
+            };
+
+            if (cliente.Delete())
+            {
+                await this.ShowMessageAsync("Alerta", "Cliente eliminado exitosamente.");
+                LimpiarControles();
+            }
+            else
+            {
+                await this.ShowMessageAsync("Alerta", "No se ha podido eliminar el cliente.");
+            }
+        }
+
+        private async void Button_Editar_Click(object sender, RoutedEventArgs e)
+        {
+            Cliente clidato = (Cliente)GridClientes.SelectedItem;
+            if (clidato == null)
+            {
+                await this.ShowMessageAsync("Alerta", "Debes seleccionar un cliente.");
+                return;
+            }
+            flyout.IsOpen = true;
+            txtRut.Text = clidato.RutCliente;
+            txtRazon.Text = clidato.RazonSocial;
+            txtNombre.Text = clidato.NombreContacto;
+            txtMail.Text = clidato.MailContacto;
+            txtDireccion.Text = clidato.Direccion;
+            txtTelefono.Text = clidato.Telefono;
+            cboActividadEmp.SelectedValue = clidato.IdActividadEmpresa;
+            cboTipoEmp.SelectedValue = clidato.IdTipoEmpresa;
+        }
+
+        private void btnActualizar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cboActividadEmp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

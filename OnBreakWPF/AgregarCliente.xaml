@@ -26,7 +26,7 @@
         <TextBox x:Name="txtNombre" Margin="5,176,8,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFF2F2F2" Grid.Column="1"/>
         <TextBlock x:Name="txtNombreMessage" Foreground="Red" Margin="5,207,10,184" Grid.Column="1" />
 
-        <TextBox x:Name="txtMail" Margin="3,176,8,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFF2F2F2" Grid.Column="3"/>
+        <TextBox x:Name="txtMail" Margin="1,181,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFF2F2F2" Grid.Column="3"/>
         <TextBlock x:Name="txtMailMessage" Foreground="Red" Margin="3,207,10,184" Grid.Column="3" />
 
         <TextBox x:Name="txtDireccion" Margin="5,247,8,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFF2F2F2" Grid.Column="1"/>
