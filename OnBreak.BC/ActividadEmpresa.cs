@@ -8,7 +8,7 @@ namespace OnBreak.BC
 {
     public class ActividadEmpresa
     {
-        public int IdActividadEmpresa { get; set; }
+        public int Id { get; set; }
         public string Descripcion { get; set; }
 
         public ActividadEmpresa()
@@ -18,7 +18,7 @@ namespace OnBreak.BC
 
         private void Init()
         {
-            IdActividadEmpresa = 0;
+            Id = 0;
             Descripcion = string.Empty;
 
         }
@@ -81,7 +81,7 @@ namespace OnBreak.BC
             {
                 //busco por el id el contenido de la entidad
                 BD.ActividadEmpresa actividadEmpresa =
-                    bd.ActividadEmpresa.First(e => e.Id.Equals(this.IdActividadEmpresa));
+                    bd.ActividadEmpresa.First(e => e.Id.Equals(this.Id));
                 CommonBC.Syncronize(actividadEmpresa, this);
 
                 return true;
@@ -101,7 +101,7 @@ namespace OnBreak.BC
             {
                 //busco por el id el contenido de la entidad a modificar
                 BD.ActividadEmpresa actividadEmpresa =
-                    bd.ActividadEmpresa.First(e => e.Id.Equals(this.IdActividadEmpresa));
+                    bd.ActividadEmpresa.First(e => e.Id.Equals(this.Id));
                 CommonBC.Syncronize(this, actividadEmpresa);
                 bd.SaveChanges();
                 return true;
@@ -120,7 +120,7 @@ namespace OnBreak.BC
             {
                 //busco por el id el contenido de la entidad a eliminar
                 BD.ActividadEmpresa actividadEmpresa =
-                    bd.ActividadEmpresa.First(e => e.Id.Equals(this.IdActividadEmpresa));
+                    bd.ActividadEmpresa.First(e => e.Id.Equals(this.Id));
                 bd.ActividadEmpresa.Remove(actividadEmpresa);
                 bd.SaveChanges();
                 return true;

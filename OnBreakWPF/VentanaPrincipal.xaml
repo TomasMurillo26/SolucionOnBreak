@@ -1,0 +1,35 @@
+﻿<mah:MetroWindow x:Class="OnBreakWPF.VentanaPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:OnBreakWPF"
+        mc:Ignorable="d"
+        Title="VentanaPrincipal" Height="450" Width="800">
+    <Grid>
+        <mah:Tile HorizontalAlignment="Left" Margin="298,109,0,0" VerticalAlignment="Top" Width="201" Height="123" Background="#CC00D724" TitleFontSize="13.5" Title="Cuenta" Click="tlCuenta_Click" ClickMode="Press">
+            <Image Source="./Imagenes/cuenta.png" Height="83" Width="139"/>
+        </mah:Tile>
+
+        <mah:Tile HorizontalAlignment="Left" Margin="298,237,0,0" VerticalAlignment="Top" Width="201" Background="#CCE69D13" Title="Listado de Contratos" Click="tlListContrato_Click" TitleFontSize="13.5">
+            <Image Source="Imagenes/listcontr.png" Height="83" Width="139" />
+        </mah:Tile>
+
+        <mah:Tile HorizontalAlignment="Left" Margin="112,264,0,0" VerticalAlignment="Top" Width="181" Height="113" Background="#CC4F7C7C" Title="Listado de Clientes" TitleFontSize="13.5" Click="tlListaCliente_Click">
+            <Image Source="./Imagenes/listclie.png" Height="83" Width="139" ></Image>
+        </mah:Tile>
+
+        <mah:Tile HorizontalAlignment="Left" Margin="112,109,0,0" VerticalAlignment="Top" Width="181" Height="150" Background="#FF0CC0DF" Title="Administración de Clientes" TitleFontSize="13.5" Click="tlAdminClie_Click">
+            <Image Source="./Imagenes/cliente.png" Height="83" Width="139" ></Image>
+        </mah:Tile>
+
+
+        <mah:Tile HorizontalAlignment="Left" Margin="504,109,0,0" VerticalAlignment="Top" Width="190" Height="268" Background="#CC9600D7" Title="Administración de Contratos" TitleFontSize="13.5" Click="tlAdminContra_Click">
+            <Image Source="./Imagenes/contrato.png" Height="116" Width="116" ></Image>
+        </mah:Tile>
+        <Label Content="Página Principal" HorizontalAlignment="Left" Margin="112,55,0,0" VerticalAlignment="Top" Width="319" FontFamily="Bahnschrift Light" FontSize="24"/>
+
+
+    </Grid>
+</mah:MetroWindow>

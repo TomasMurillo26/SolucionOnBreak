@@ -8,6 +8,9 @@ namespace OnBreak.BC
 {
     public class Cliente
     {
+        string _descripcionActEmpresa;
+        string _descripcionTipoEmpresa;
+        #region Propiedades
         public string RutCliente { get; set; }
         public string RazonSocial { get; set; }
         public string NombreContacto { get; set; }
@@ -16,6 +19,9 @@ namespace OnBreak.BC
         public string Telefono { get; set; }
         public int IdActividadEmpresa { get; set; }
         public int IdTipoEmpresa { get; set; }
+        public string DescripcionActividadEmpresa { get => _descripcionActEmpresa; }
+        public string DescripcionTipoEmpresa { get => _descripcionTipoEmpresa; }
+        #endregion
 
         public Cliente()
         {
@@ -30,8 +36,10 @@ namespace OnBreak.BC
             MailContacto = string.Empty;
             Direccion = string.Empty;
             Telefono = string.Empty;
-            IdActividadEmpresa = 0;
             IdTipoEmpresa = 0;
+            IdActividadEmpresa = 0;
+            _descripcionActEmpresa = string.Empty;
+            _descripcionTipoEmpresa = string.Empty;
         }
         public bool Create()
         {
@@ -111,14 +119,48 @@ namespace OnBreak.BC
                 return false;
             }
         }
+
+        public void LeerDescripcionAct(int idAct)
+        {
+            ActividadEmpresa actEmpresa = new ActividadEmpresa() { Id = idAct };
+            if (actEmpresa.Read())
+            {
+                _descripcionActEmpresa = actEmpresa.Descripcion;
+            }
+            else
+            {
+                _descripcionActEmpresa = string.Empty;
+            }
+        }
+
+        public void LeerDescripcionTipo(int idTipo)
+        {
+            TipoEmpresa tipoEmpresa = new TipoEmpresa() { Id = idTipo };
+            if (tipoEmpresa.Read())
+            {
+                _descripcionTipoEmpresa = tipoEmpresa.Descripcion;
+            }
+            else
+            {
+                _descripcionTipoEmpresa = string.Empty;
+            }
+        }
+
         private List<Cliente> GenerarListado(List<BD.Cliente> listaDatos)
         {
             List<Cliente> listaNegocio = new List<Cliente>();
             foreach (BD.Cliente datos in listaDatos)
             {
-                Cliente negocio = new Cliente();
-                CommonBC.Syncronize(datos, negocio);
-                listaNegocio.Add(negocio);
+                Cliente clientes = new Cliente();
+                CommonBC.Syncronize(datos, clientes);
+
+                clientes.LeerDescripcionAct(clientes.IdActividadEmpresa);
+                clientes.LeerDescripcionTipo(clientes.IdTipoEmpresa);
+
+                clientes.IdTipoEmpresa = 0;
+                clientes.IdActividadEmpresa = 0;
+
+                listaNegocio.Add(clientes);
             }
             return listaNegocio;
         }
@@ -165,6 +207,22 @@ namespace OnBreak.BC
             {
 
                 List<BD.Cliente> listaDatos = bd.Cliente.Where(e => e.IdActividadEmpresa == actEmpresa).ToList();
+
+                List<Cliente> listaNegocio = GenerarListado(listaDatos);
+                return listaNegocio;
+            }
+            catch (Exception)
+            {
+                return new List<Cliente>();
+            }
+        }
+
+        public List<Cliente> FiltrarPorTipoYActividadEmpresa(int idTipoEmpresa, int idActividadEmpresa)
+        {
+            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            try
+            {
+                List<BD.Cliente> listaDatos = bd.Cliente.Where(e => e.IdTipoEmpresa == idTipoEmpresa && e.IdActividadEmpresa == idActividadEmpresa).ToList();
 
                 List<Cliente> listaNegocio = GenerarListado(listaDatos);
                 return listaNegocio;

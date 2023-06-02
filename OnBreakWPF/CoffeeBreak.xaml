@@ -1,0 +1,34 @@
+﻿<mah:MetroWindow x:Class="OnBreakWPF.CoffeeBreak"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:OnBreakWPF"
+        mc:Ignorable="d"
+        Title="CoffeeBreak" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="132*"/>
+            <ColumnDefinition Width="187*"/>
+            <ColumnDefinition Width="181*"/>
+            <ColumnDefinition Width="178*"/>
+            <ColumnDefinition Width="122*"/>
+        </Grid.ColumnDefinitions>
+
+
+
+
+        <Rectangle Height="39" Margin="0,44,0,0" VerticalAlignment="Top" Fill="#FF0CC0DF" Grid.ColumnSpan="5"/>
+        <Button Content="ATRÁS" Margin="38,0,0,48" VerticalAlignment="Bottom" Click="btnAtras_Click" Background="#FFB9B9B9" Foreground="White" HorizontalAlignment="Left" Width="69"/>
+        <Label Content="Modalidades de servicio" Margin="38,44,12,0" VerticalAlignment="Top" FontFamily="Bahnschrift Light" FontSize="24" Foreground="White" Grid.ColumnSpan="2"/>
+        <CheckBox Content="Comida Vegetariana" Margin="38,277,121,0" VerticalAlignment="Top" FontFamily="Bahnschrift Light" FontSize="14" Checked="CheckBox_Checked" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="opcion1" Content="Light Break" Margin="31,109,28,0" VerticalAlignment="Top" Checked="opcion1_Checked" FontSize="14" FontFamily="Bahnschrift Light" Height="26" GroupName="opciones" Grid.Column="1"/>
+        <RadioButton x:Name="opcion2" Content="Journal Break" Margin="27,109,26,0" VerticalAlignment="Top" Checked="opcion2_Checked" FontSize="14" FontFamily="Bahnschrift Light" Height="26" GroupName="opciones" Grid.Column="2"/>
+        <RadioButton x:Name="opcion3" Content="Day Break" Margin="27,109,23,0" VerticalAlignment="Top" Height="26" FontSize="14" FontFamily="Bahnschrift Light" GroupName="opciones" Checked="opcion3_Checked" Grid.Column="3"/>
+        <TextBlock Margin="31,140,28,0" TextWrapping="Wrap" Text="Servicio de cafetería pensado en intermedios de  capacitaciones o reuniones. Tiene un valor base de 3 UF y considera 2  personas para la atención.  " VerticalAlignment="Top" Height="113" FontSize="11" FontFamily="Bahnschrift Light" TextAlignment="Justify" Grid.Column="1"/>
+        <TextBlock Margin="27,140,26,0" TextWrapping="Wrap" Text="Servicio de cafetería orientado a mantener en media  jornada (4 horas) un servicio de cafetería continuo. Tiene un valor base  de 8 UF y considera 6 personas para la atención." VerticalAlignment="Top" Height="113" FontSize="11" FontFamily="Bahnschrift Light" TextAlignment="Justify" Grid.Column="2"/>
+        <TextBlock Margin="27,140,23,0" TextWrapping="Wrap" Text="Servicio de cafetería orientado a mantener una jornada  completa (8 horas) de un servicio de cafetería continuo. Tiene un valor  base de 12 UF y considera 6 personas para la atención.  " VerticalAlignment="Top" Height="113" FontSize="11" FontFamily="Bahnschrift Light" TextAlignment="Justify" Grid.Column="3"/>
+        <Button Content="SELECCIONAR" Margin="0,0,28,48" VerticalAlignment="Bottom" Click="btnSeleccionar_Click" Background="#FF0CC0DF" Foreground="White" Grid.Column="4" HorizontalAlignment="Right" Width="88"/>
+    </Grid>
+</mah:MetroWindow>

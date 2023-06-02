@@ -1,0 +1,59 @@
+﻿<mah:MetroWindow x:Class="OnBreakWPF.AgregarCliente"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:OnBreak.BC="clr-namespace:OnBreak.BC;assembly=OnBreak.BC"
+        xmlns:local="clr-namespace:OnBreakWPF"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 mc:Ignorable="d"
+        Title="AgregarCliente" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="57*"/>
+            <ColumnDefinition Width="157*"/>
+            <ColumnDefinition Width="39*"/>
+            <ColumnDefinition Width="155*"/>
+            <ColumnDefinition Width="392*"/>
+        </Grid.ColumnDefinitions>
+        <Image Height="338" Margin="0,21,0,0" VerticalAlignment="Top" Source="Imagenes/agregarcliente.png" RenderTransformOrigin="0.488,0.226" Grid.Column="4" HorizontalAlignment="Right" Width="359"/>
+        <Label Content="Agregar Cliente" Margin="0,21,140,0" FontWeight="Bold" FontSize="20" FontFamily="Bahnschrift" Background="#FF0CC0DF" Foreground="White" FlowDirection="RightToLeft" Grid.ColumnSpan="4" Height="36" VerticalAlignment="Top"/>
+
+        <TextBox x:Name="txtRut" Margin="5,104,8,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFF2F2F2" Grid.Column="1"/>
+        <TextBlock x:Name="txtRutMessage" Foreground="Red" Margin="5,135,10,256" Grid.Column="1" />
+
+        <TextBox x:Name="txtNombre" Margin="5,176,8,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFF2F2F2" Grid.Column="1"/>
+        <TextBlock x:Name="txtNombreMessage" Foreground="Red" Margin="5,207,10,184" Grid.Column="1" />
+
+        <TextBox x:Name="txtMail" Margin="3,176,8,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFF2F2F2" Grid.Column="3"/>
+        <TextBlock x:Name="txtMailMessage" Foreground="Red" Margin="3,207,10,184" Grid.Column="3" />
+
+        <TextBox x:Name="txtDireccion" Margin="5,247,8,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFF2F2F2" Grid.Column="1"/>
+        <TextBlock x:Name="txtDireccionMessage" Foreground="Red" Margin="5,278,8,115" Grid.Column="1" />
+
+        <TextBox x:Name="txtTelefono" Margin="3,247,8,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFF2F2F2" Grid.Column="3"/>
+        <TextBlock x:Name="txtTelefonoMessage" Foreground="Red" Margin="3,278,10,115" Grid.Column="3" />
+
+        <TextBox x:Name="txtRazon" Margin="3,104,8,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFF2F2F2" Grid.Column="3"/>
+        <TextBlock x:Name="txtRazonMessage" Foreground="Red" Margin="3,135,10,258" Grid.Column="3" />
+
+        <Label Content="Actividad empresa" Margin="5,313,8,0" VerticalAlignment="Top" RenderTransformOrigin="-0.29,-0.153" Foreground="#FF0CC0DF" FontWeight="Bold" FontSize="15" FontFamily="Bahnschrift" Grid.Column="1"/>
+        <ComboBox x:Name="cboActividadEmp" HorizontalAlignment="Left" Margin="5,341,0,0" VerticalAlignment="Top" Width="142" Grid.Column="1" SelectedIndex="-1"/>
+        <TextBlock x:Name="txtActMessage" Foreground="Red" Margin="5,372,10,21" Grid.Column="1" />
+
+        <Label Content="Tipo empresa" Margin="3,313,8,0" VerticalAlignment="Top" RenderTransformOrigin="-0.29,-0.153" Foreground="#FF0CC0DF" FontWeight="Bold" FontSize="15" FontFamily="Bahnschrift" Grid.Column="3"/>
+        <ComboBox x:Name="cboTipoEmp" HorizontalAlignment="Left" Margin="3,341,0,0" VerticalAlignment="Top" Width="141" Grid.Column="3" SelectedIndex="-1"/>
+        <TextBlock x:Name="txtTipoMessage" Foreground="Red" Grid.Column="3" Margin="3,372,10,21" />
+
+        <!--<ComboBox x:Name="cboActividadEmp" Margin="5,324,8,0" VerticalAlignment="Top" Background="#FFD0D0D0" Grid.Column="1" SelectionChanged="cboActividadEmp_SelectionChanged">
+            <StatusBar/>
+        </ComboBox>-->
+
+
+        <!--<ComboBox x:Name="cboTipoEmp" Margin="3,324,8,0" VerticalAlignment="Top" Background="#FFD0D0D0" Grid.Column="3"/>-->
+
+        <Button Content="Volver" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Margin="0,0,45,19" Click="btnVolver_Click" BorderThickness="0,0,0,0" Background="#FFB9B9B9" FontFamily="Bahnschrift" Grid.Column="4" HorizontalAlignment="Right" Width="72" Height="28" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnGuardar" Content="Guardar" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" HorizontalAlignment="Left" Margin="45,0,0,19" Click="btnGuardar_Click" Width="72" BorderThickness="0,0,0,0" Background="#FF0CC0DF" FontFamily="Bahnschrift" Grid.Column="4" Height="28" VerticalAlignment="Bottom"/>
+    </Grid>
+</mah:MetroWindow>

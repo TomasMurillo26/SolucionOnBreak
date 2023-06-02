@@ -8,7 +8,7 @@ namespace OnBreak.BC
 {
     public class TipoAmbientacion
     {
-        public int IdTipoAmbientacion { get; set; }
+        public int Id { get; set; }
         public string Descripcion { get; set; }
 
         public TipoAmbientacion()
@@ -18,7 +18,7 @@ namespace OnBreak.BC
 
         private void Init()
         {
-            IdTipoAmbientacion = 0;
+            Id = 0;
             Descripcion = string.Empty;
         }
         public List<TipoAmbientacion> ReadAll()
