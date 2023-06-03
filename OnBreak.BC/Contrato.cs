@@ -8,6 +8,9 @@ namespace OnBreak.BC
 {
     public class Contrato
     {
+        string _descripcionModalidad;
+        string _descripcionTipoEvento;
+        string _descripcionTerminado;
         public string Numero { get; set; }
         public DateTime Creacion { get; set; }
         public DateTime Termino { get; set; }
@@ -21,6 +24,9 @@ namespace OnBreak.BC
         public bool Realizado { get; set; }
         public double ValorTotalContrato { get; set; }
         public string Observaciones { get; set; }
+        public string DescripcionModalidad { get => _descripcionModalidad; }
+        public string DescripcionTipoEmpresa { get => _descripcionTipoEvento; }
+        public string DescripcionTerminado { get => _descripcionTerminado; }
 
         public Contrato()
         {
@@ -42,6 +48,9 @@ namespace OnBreak.BC
             Realizado = false;
             ValorTotalContrato = 0;
             Observaciones = string.Empty;
+            _descripcionModalidad = string.Empty;
+            _descripcionTipoEvento = string.Empty;
+            _descripcionTerminado = string.Empty;
         }
         public bool Create()
         {
@@ -131,8 +140,8 @@ namespace OnBreak.BC
                 //Crear una lista de DATOS
                 List<BD.Contrato> listaDatos = bd.Contrato.ToList();
                 //Crear una lista de NEGOCIO
-                List<Contrato> listaNegocio = GenerarListado(listaDatos);
-                return listaNegocio;
+                List<Contrato> Contrato = GenerarListado(listaDatos);
+                return Contrato;
             }
             catch (Exception)
             {
@@ -145,11 +154,50 @@ namespace OnBreak.BC
             List<Contrato> listaNegocio = new List<Contrato>();
             foreach (BD.Contrato datos in listaDatos)
             {
-                Contrato negocio = new Contrato();
-                CommonBC.Syncronize(datos, negocio);
-                listaNegocio.Add(negocio);
+                Contrato contratos = new Contrato();
+                CommonBC.Syncronize(datos, contratos);
+
+                contratos.LeerDescripcionModalidad(contratos.IdModalidad);
+                contratos.LeerDescripcionTipo(contratos.IdTipoEvento);
+
+                if(contratos.Realizado)
+                {
+                    contratos._descripcionTerminado = "Si";
+                }
+                else
+                {
+                    contratos._descripcionTerminado = "No";
+                }
+
+                listaNegocio.Add(contratos);
             }
             return listaNegocio;
+        }
+
+        public void LeerDescripcionModalidad(string idMod)
+        {
+            ModalidadServicio modalidad = new ModalidadServicio() { Id = idMod };
+            if (modalidad.Read())
+            {
+                _descripcionModalidad = modalidad.Nombre;
+            }
+            else
+            {
+                _descripcionModalidad = string.Empty;
+            }
+        }
+
+        public void LeerDescripcionTipo(int idTipo)
+        {
+            TipoEvento tipoEvento = new TipoEvento() { Id = idTipo };
+            if (tipoEvento.Read())
+            {
+                _descripcionTipoEvento = tipoEvento.Descripcion;
+            }
+            else
+            {
+                _descripcionTipoEvento = string.Empty;
+            }
         }
 
         public List<Contrato> LeerPorRut(string rutCliente)
@@ -159,6 +207,23 @@ namespace OnBreak.BC
             {
                 //Crear una lista de DATOS
                 List<BD.Contrato> listaDatos = bd.Contrato.Where(e => e.RutCliente.Equals(rutCliente)).ToList<BD.Contrato>();
+                //Crear una lista de NEGOCIO
+                List<Contrato> listaNegocio = GenerarListado(listaDatos);
+                return listaNegocio;
+            }
+            catch (Exception)
+            {
+                return new List<Contrato>();
+            }
+        }
+
+        public List<Contrato> LeerPorNro(string nro)
+        {
+            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            try
+            {
+                //Crear una lista de DATOS
+                List<BD.Contrato> listaDatos = bd.Contrato.Where(e => e.Numero.Equals(nro)).ToList<BD.Contrato>();
                 //Crear una lista de NEGOCIO
                 List<Contrato> listaNegocio = GenerarListado(listaDatos);
                 return listaNegocio;
@@ -203,5 +268,23 @@ namespace OnBreak.BC
             }
         }
 
+        public List<Contrato> FiltrarPorTipoEventoyModalServ(int idTipoEvento, string idModalidad)
+        {
+            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            try
+            {
+                var _idmod = idModalidad.ToString();
+                List<BD.Contrato> listaDatos = bd.Contrato.Where(e => e.IdTipoEvento == idTipoEvento && e.IdModalidad.Equals(_idmod)).ToList();
+
+                List<Contrato> listaNegocio = GenerarListado(listaDatos);
+                return listaNegocio;
+            }
+            catch (Exception)
+            {
+                return new List<Contrato>();
+            }
+        }
     }
+
 }
+

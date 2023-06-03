@@ -26,37 +26,18 @@ namespace OnBreakWPF
             InitializeComponent();
         }
 
-        private void tlCuenta_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void tlListContrato_Click(object sender, RoutedEventArgs e)
-        {
-
-            this.Close();
-        }
-
-        private void tlListaCliente_Click(object sender, RoutedEventArgs e)
+        private void tlAdminClie_Click(object sender, RoutedEventArgs e)
         {
             Clientes cliente = new Clientes();
             cliente.Show();
             this.Close();
         }
 
-        private void tlAdminClie_Click(object sender, RoutedEventArgs e)
-        {
-            AgregarCliente agregarCliente = new AgregarCliente();
-            agregarCliente.Show();
-            this.Close();
-        }
-
         private void tlAdminContra_Click(object sender, RoutedEventArgs e)
         {
-            AgregarContrato agregarContrato = new AgregarContrato();
-            agregarContrato.Show();
+            Contratos contrato = new Contratos();
+            contrato.Show();
             this.Close();
         }
     }
 }
-

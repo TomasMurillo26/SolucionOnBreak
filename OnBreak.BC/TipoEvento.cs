@@ -21,6 +21,25 @@ namespace OnBreak.BC
             Id = 0;
             Descripcion = string.Empty;
         }
+
+        public bool Read()
+        {
+            //Crear una conexión al Entities
+            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            try
+            {
+                //busco por el id el contenido de la entidad
+                BD.TipoEvento contrato =
+                    bd.TipoEvento.First(e => e.Id.Equals(this.Id));
+                CommonBC.Syncronize(contrato, this);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         public List<TipoEvento> ReadAll()
         {
             //Crear una conexión al Entities

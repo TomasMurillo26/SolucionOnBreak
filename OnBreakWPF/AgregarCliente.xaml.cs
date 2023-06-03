@@ -171,8 +171,8 @@ namespace OnBreakWPF
 
         private void btnVolver_Click(object sender, RoutedEventArgs e)
         {
-            VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
-            ventanaPrincipal.Show();
+            Clientes cliente = new Clientes();
+            cliente.Show();
             this.Close();
         }
 
@@ -203,5 +203,32 @@ namespace OnBreakWPF
             cboTipoEmp.SelectedIndex = -1; //Posiciona en el primer registro
 
         }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string rutCliente = txtRut.Text.Trim();
+            Cliente cliente = new Cliente()
+            {
+                RutCliente = rutCliente
+            };
+
+            if (cliente.Read())
+            {
+                txtNombre.Text = cliente.NombreContacto;
+                txtRazon.Text = cliente.RazonSocial;
+                txtMail.Text = cliente.MailContacto;
+                txtDireccion.Text = cliente.Direccion;
+                txtTelefono.Text = cliente.Telefono;
+                cboActividadEmp.SelectedValue = cliente.IdActividadEmpresa;
+                cboTipoEmp.SelectedValue = cliente.IdTipoEmpresa;
+
+                await this.ShowMessageAsync("¡Listo!", "Cliente encontrado");
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 }
+

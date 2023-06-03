@@ -76,19 +76,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AdminContrato.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="AgregarCliente.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AgregarContrato.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Cena.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -96,11 +84,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Cocktail.xaml">
+    <Page Include="Contratos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CoffeeBreak.xaml">
+    <Page Include="CrearContrato.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,30 +96,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AdminContrato.xaml.cs">
-      <DependentUpon>AdminContrato.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AgregarCliente.xaml.cs">
       <DependentUpon>AgregarCliente.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AgregarContrato.xaml.cs">
-      <DependentUpon>AgregarContrato.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Cena.xaml.cs">
-      <DependentUpon>Cena.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Clientes.xaml.cs">
       <DependentUpon>Clientes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Cocktail.xaml.cs">
-      <DependentUpon>Cocktail.xaml</DependentUpon>
+    <Compile Include="Contratos.xaml.cs">
+      <DependentUpon>Contratos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CoffeeBreak.xaml.cs">
-      <DependentUpon>CoffeeBreak.xaml</DependentUpon>
+    <Compile Include="CrearContrato.xaml.cs">
+      <DependentUpon>CrearContrato.xaml</DependentUpon>
     </Compile>
     <Compile Include="VentanaPrincipal.xaml.cs">
       <DependentUpon>VentanaPrincipal.xaml</DependentUpon>

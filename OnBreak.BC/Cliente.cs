@@ -162,6 +162,33 @@ namespace OnBreak.BC
             return listaNegocio;
         }
 
+        public List<Cliente> BuscarClientes(string rutCliente)
+        {
+            // Crear una conexión al Entities
+            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            try
+            {
+                // Buscar coincidencias exactas
+                var exactMatches = bd.Cliente.Where(c => c.RutCliente == rutCliente).ToList();
+
+                // Buscar coincidencias parciales
+                var partialMatches = bd.Cliente.Where(c => c.RutCliente.Contains(rutCliente) && c.RutCliente != rutCliente).ToList();
+
+                // Combinar resultados
+                List<BD.Cliente> listaDatos = new List<BD.Cliente>();
+                listaDatos.AddRange(exactMatches);
+                listaDatos.AddRange(partialMatches);
+
+                // Crear una lista de NEGOCIO
+                List<Cliente> listaNegocio = GenerarListado(listaDatos);
+                return listaNegocio;
+            }
+            catch (Exception)
+            {
+                return new List<Cliente>();
+            }
+        }
+
         public List<Cliente> ReadAll()
         {
             //Crear una conexión al Entities

@@ -1,0 +1,45 @@
+﻿<mah:MetroWindow x:Class="OnBreakWPF.Contratos"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns:local="clr-namespace:OnBreakWPF"
+      mc:Ignorable="d"
+      Title="Contratos"
+      WindowStartupLocation="CenterScreen" Height="488" Width="1075">
+
+    <Grid Margin="0,0,45,0">
+        <Image HorizontalAlignment="Center" Height="84" Margin="955,10,-15,0" 
+               Source="Imagenes/Logo.png"  VerticalAlignment="Top" Width="82"/>
+        <DataGrid x:Name="GridContratos" BorderBrush="#FF0CC0DF" BorderThickness="2" HorizontalAlignment="Left" Height="309" Margin="37,87,0,0" AutoGenerateColumns="False" VerticalAlignment="Top" Width="896">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nro." Binding="{Binding Numero}" />
+                <DataGridTextColumn Header="Rut cliente" Binding="{Binding RutCliente}" />
+                <DataGridTextColumn Header="Fecha Creacion" Binding="{Binding Creacion}" />
+                <DataGridTextColumn Header="Fecha Termino" Binding="{Binding Termino}" />
+                <DataGridTextColumn Header="Modalidad Servicio" Binding="{Binding DescripcionModalidad}" />
+                <DataGridTextColumn Header="Tipo Evento" Binding="{Binding DescripcionTipoEmpresa}" />
+                <DataGridTextColumn Header="Valor Contrato" Binding="{Binding ValorTotalContrato}" />
+                <DataGridTextColumn Header="Realizado" Binding="{Binding DescripcionTerminado}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBox x:Name="txtNroContra" HorizontalAlignment="Left" Height="25" Margin="49,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtRut1" HorizontalAlignment="Left" Height="25" Margin="184,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="lblTipoEvento" Content="Tipo Evento" Margin="430,10,493,0" VerticalAlignment="Top" RenderTransformOrigin="-0.29,-0.153" Foreground="#FF0CC0DF" FontWeight="Bold" FontSize="14" Height="28" Padding="5,5,5,3"/>
+        <ComboBox x:Name="cboTipoEvento" HorizontalAlignment="Left" Margin="430,38,0,0" VerticalAlignment="Top" Width="120" Background="#FFD0D0D0" Height="25"/>
+
+        <Label x:Name="lblModalidad" Content="Modalidad de &#xD;&#xA;servicio" Margin="578,0,324,0" VerticalAlignment="Top" RenderTransformOrigin="-0.29,-0.153" Foreground="#FF0CC0DF" FontWeight="Bold" Height="38" Padding="5,5,5,3"/>
+        <ComboBox x:Name="cboModalServi" HorizontalAlignment="Left" Margin="578,38,0,0" VerticalAlignment="Top" Width="120" Background="#FFD0D0D0" Height="25"/>
+
+        <Button x:Name="botonAgregar" Content="agregar" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" HorizontalAlignment="Left" Margin="955,141,-9,0" VerticalAlignment="Top" Width="76" Background="#FF0CC0DF" Foreground="White" BorderBrush="White" FontWeight="SemiBold" Click="botonAgregar_Click"/>
+        <Button x:Name="botonEliminar" Content="eliminar" HorizontalAlignment="Left" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Margin="955,207,-8,0" VerticalAlignment="Top" Width="75" Foreground="White" Background="#FFE23131" FontWeight="SemiBold" BorderThickness="0"/>
+        <Button Content="Buscar" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" HorizontalAlignment="Center" Margin="322,38,622,0" VerticalAlignment="Top" Click="btnBuscar2_Click" Width="78" Height="26" BorderThickness="0,0,0,0" Background="#FF0CC0DF"/>
+        <Button Content="Limpiar Filtros" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" HorizontalAlignment="Center" Margin="721,38,191,0" VerticalAlignment="Top" Click="Button_Clean" Width="110" Height="26" BorderThickness="0,0,0,0" Background="Gray"/>
+        <Button x:Name="btnBack" Content="Volver" HorizontalAlignment="Left" Background="#FF0CC0DF" Margin="37,412,0,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" VerticalAlignment="Top" Width="75" Click="btnBack_Click" BorderThickness="0"/>
+    </Grid>
+
+</mah:MetroWindow>
+

@@ -73,12 +73,57 @@ namespace OnBreakWPF
 
         }
 
+        private void CargarActActividadEmpresas()
+        {
+            /* Carga todas las Actividades de Empresas */
+            ActividadEmpresa actividadEmp = new ActividadEmpresa();
+            cboActualizarActividadEmp.ItemsSource = actividadEmp.ReadAll();
+
+            /* Configura los datos en el ComboBox */
+            cboActualizarActividadEmp.DisplayMemberPath = "Descripcion"; //Propiedad para mostrar
+            cboActualizarActividadEmp.SelectedValuePath = "Id"; //Propiedad con el valor a rescatar
+
+            cboActualizarActividadEmp.SelectedIndex = -1; //Posiciona en el primer registro
+
+        }
+
+        private void CargarActTipoEmpresas()
+        {
+            /* Carga todas las Tipo de Empresas */
+            TipoEmpresa tipoEmpresa = new TipoEmpresa();
+            cboActualizarTipoEmp.ItemsSource = tipoEmpresa.ReadAll();
+
+            /* Configura los datos en el ComboBox */
+            cboActualizarTipoEmp.DisplayMemberPath = "Descripcion"; //Propiedad para mostrar
+            cboActualizarTipoEmp.SelectedValuePath = "Id"; //Propiedad con el valor a rescatar
+
+            cboActualizarTipoEmp.SelectedIndex = -1; //Posiciona en el primer registro
+
+        }
+
         private async void btnBuscar_Click(object sender, RoutedEventArgs e)
         {
+            string rutCliente = txtRut1.Text.Trim();
             GridClientes.ItemsSource = null;
             Cliente cliente = new Cliente();
 
-            if(cboActividadEmpresa.SelectedItem != null && cboTipoEmpresa.SelectedItem != null)
+            if (!string.IsNullOrWhiteSpace(rutCliente))
+            {
+                Cliente clienteBuscar = new Cliente();
+                List<Cliente> clientes = clienteBuscar.BuscarClientes(rutCliente);
+
+                if (clientes.Count > 0)
+                {
+                    GridClientes.ItemsSource = clientes;
+                    return;
+                }
+                else
+                {
+                    await this.ShowMessageAsync("Búsqueda de Clientes","No se encontraron coincidencias." );
+                }
+            }
+
+            if (cboActividadEmpresa.SelectedItem != null && cboTipoEmpresa.SelectedItem != null)
             {
                 GridClientes.ItemsSource = cliente.FiltrarPorTipoYActividadEmpresa((int)cboActividadEmpresa.SelectedValue, (int)cboTipoEmpresa.SelectedValue);
                 if (GridClientes.Items.Count == 1)
@@ -166,22 +211,155 @@ namespace OnBreakWPF
                 return;
             }
             flyout.IsOpen = true;
+            CargarActActividadEmpresas();
+            CargarActTipoEmpresas();
+            Console.WriteLine(clidato);
             txtRut.Text = clidato.RutCliente;
             txtRazon.Text = clidato.RazonSocial;
             txtNombre.Text = clidato.NombreContacto;
             txtMail.Text = clidato.MailContacto;
             txtDireccion.Text = clidato.Direccion;
             txtTelefono.Text = clidato.Telefono;
-            cboActividadEmp.SelectedValue = clidato.IdActividadEmpresa;
-            cboTipoEmp.SelectedValue = clidato.IdTipoEmpresa;
+            cboActualizarActividadEmp.SelectedValue = clidato.IdActividadEmpresa;
+            cboActualizarTipoEmp.SelectedValue = clidato.IdTipoEmpresa;
         }
 
-        private void btnActualizar_Click(object sender, RoutedEventArgs e)
+        private async void btnActualizar_Click(object sender, RoutedEventArgs e)
         {
+            bool isValid = true;
 
+            // Validar el campo RutCliente
+            if (string.IsNullOrWhiteSpace(txtRut.Text))
+            {
+                txtRutMessage.Text = "Ingrese el Rut";
+                isValid = false;
+            }
+            else
+            {
+                txtRutMessage.Text = string.Empty;
+            }
+
+            // Validar el campo NombreContacto
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                txtNombreMessage.Text = "Ingrese el nombre";
+                isValid = false;
+            }
+            else
+            {
+                txtNombreMessage.Text = string.Empty;
+            }
+
+            // Validar el campo Razon Social
+            if (string.IsNullOrWhiteSpace(txtRazon.Text))
+            {
+                txtRazonMessage.Text = "Ingrese la razón social";
+                isValid = false;
+            }
+            else
+            {
+                txtRazonMessage.Text = string.Empty;
+            }
+
+            // Validar el campo Mail
+            if (string.IsNullOrWhiteSpace(txtMail.Text))
+            {
+                txtMailMessage.Text = "Ingrese un mail";
+                isValid = false;
+            }
+            else
+            {
+                txtMailMessage.Text = string.Empty;
+            }
+
+            // Validar el campo Dirección
+            if (string.IsNullOrWhiteSpace(txtDireccion.Text))
+            {
+                txtDireccionMessage.Text = "Ingrese una dirección";
+                isValid = false;
+            }
+            else
+            {
+                txtDireccionMessage.Text = string.Empty;
+            }
+
+            // Validar el campo Telefono
+            if (string.IsNullOrWhiteSpace(txtTelefono.Text))
+            {
+                txtTelefonoMessage.Text = "Ingrese un telefono";
+                isValid = false;
+            }
+            else
+            {
+                txtTelefonoMessage.Text = string.Empty;
+            }
+
+            // Validar el campo Act. Empresa
+            if (string.IsNullOrWhiteSpace(cboActualizarActividadEmp.Text))
+            {
+                txtActMessage.Text = "Seleccione una opción";
+                isValid = false;
+            }
+            else
+            {
+                txtActMessage.Text = string.Empty;
+            }
+
+            // Validar el campo Tipo Empresa
+            if (string.IsNullOrWhiteSpace(cboActualizarTipoEmp.Text))
+            {
+                txtTipoMessage.Text = "Seleccione una opción";
+                isValid = false;
+            }
+            else
+            {
+                txtTipoMessage.Text = string.Empty;
+            }
+
+
+            if (!isValid)
+            {
+                await this.ShowMessageAsync("Error de validación", "Favor completar todos los campos en rojo");
+                return;
+            }
+
+            Cliente cliente = new Cliente()
+            {
+                RutCliente = txtRut.Text,
+                RazonSocial = txtRazon.Text,
+                NombreContacto = txtNombre.Text,
+                MailContacto = txtMail.Text,
+                Direccion = txtDireccion.Text,
+                Telefono = txtTelefono.Text,
+                IdActividadEmpresa = (int)cboActualizarActividadEmp.SelectedValue,
+                IdTipoEmpresa = (int)cboActualizarTipoEmp.SelectedValue,
+            };
+
+            if (cliente.Update())
+            {
+                flyout.IsOpen = false;
+                await this.ShowMessageAsync("¡Listo!", "Cliente actualizado con éxito");
+                GridClientes.ItemsSource = cliente.ReadAll();
+            }
+            else
+            {
+                await this.ShowMessageAsync("Alerta", "No se actualizó el cliente");
+            }
         }
 
-        private void cboActividadEmp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CloseFlyout(object sender, RoutedEventArgs e)
+        {
+            flyout.IsOpen = false;
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+            this.Close();
+            ventanaPrincipal.Show();
+        }
+
+        private void txtRut1_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
