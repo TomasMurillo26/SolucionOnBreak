@@ -31,7 +31,7 @@ namespace OnBreak.BC
                 {
                     /* Recupera propiedad destino por su nombre */
                     PropertyInfo propInfo = destino.GetType().GetProperty(propiedad.Name);
-
+                    
                     /* Asigna valor destino desde el origen */
                     propInfo.SetValue(destino, propiedad.GetValue(origen, null));
                 }
