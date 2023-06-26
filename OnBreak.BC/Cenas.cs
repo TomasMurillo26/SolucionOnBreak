@@ -32,20 +32,20 @@ namespace OnBreak.BC
         public bool Create()
         {
             //Se crea una conexión a Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
-            BD.Cenas cenas = new BD.Cenas();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
+            DB.Cenas cenas = new DB.Cenas();
             try
             {
-                //Sincronizo el contenido de las propiedades a la BD
+                //Sincronizo el contenido de las propiedades a la DB
                 CommonBC.Syncronize(this, cenas);
-                bd.Cenas.Add(cenas);
-                bd.SaveChanges();
+                DB.Cenas.Add(cenas);
+                DB.SaveChanges();
 
                 return true;
             }
             catch (Exception)
             {
-                bd.Cenas.Remove(cenas);
+                DB.Cenas.Remove(cenas);
                 return false;
             }
         }
@@ -53,12 +53,12 @@ namespace OnBreak.BC
         public bool Read()
         {
             //Se crea una conexión a Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //Se busca el ID del elemento
-                BD.Cenas cenas =
-                    bd.Cenas.First(e => e.Numero.Equals(this.Numero));
+                DB.Cenas cenas =
+                    DB.Cenas.First(e => e.Numero.Equals(this.Numero));
                 CommonBC.Syncronize(cenas, this);
 
                 return true;
@@ -72,15 +72,15 @@ namespace OnBreak.BC
         public bool Update()
         {
             //Se crea una conexión a Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
 
             try
             {
                 //Se busca el ID del elemento que se va a modificar
-                BD.Cenas cenas =
-                    bd.Cenas.First(e => e.Numero.Equals(this.Numero));
+                DB.Cenas cenas =
+                    DB.Cenas.First(e => e.Numero.Equals(this.Numero));
                 CommonBC.Syncronize(this, cenas);
-                bd.SaveChanges();
+                DB.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -91,15 +91,15 @@ namespace OnBreak.BC
         public bool Delete()
         {
             //Se crea una conexión a Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
 
             try
             {
                 //Se busca el ID del elemento que se va a eliminar
-                BD.Cenas cenas =
-                    bd.Cenas.First(e => e.Numero.Equals(this.Numero));
-                bd.Cenas.Remove(cenas);
-                bd.SaveChanges();
+                DB.Cenas cenas =
+                    DB.Cenas.First(e => e.Numero.Equals(this.Numero));
+                DB.Cenas.Remove(cenas);
+                DB.SaveChanges();
                 return true;
             }
             catch (Exception)

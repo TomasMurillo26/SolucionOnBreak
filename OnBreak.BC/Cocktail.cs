@@ -29,20 +29,20 @@ namespace OnBreak.BC
         public bool Create()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
-            BD.Cocktail cocktail = new BD.Cocktail();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
+            DB.Cocktail cocktail = new DB.Cocktail();
             try
             {
-                //sincronizo el contenido de las propiedades a la BD
+                //sincronizo el contenido de las propiedades a la DB
                 CommonBC.Syncronize(this, cocktail);
-                bd.Cocktail.Add(cocktail);
-                bd.SaveChanges();
+                DB.Cocktail.Add(cocktail);
+                DB.SaveChanges();
 
                 return true;
             }
             catch (Exception)
             {
-                bd.Cocktail.Remove(cocktail);
+                DB.Cocktail.Remove(cocktail);
                 return false;
             }
         }
@@ -50,12 +50,12 @@ namespace OnBreak.BC
         public bool Read()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //busco por el id el contenido de la entidad
-                BD.Cocktail cocktail =
-                    bd.Cocktail.First(e => e.Numero.Equals(this.Numero));
+                DB.Cocktail cocktail =
+                    DB.Cocktail.First(e => e.Numero.Equals(this.Numero));
                 CommonBC.Syncronize(cocktail, this);
 
                 return true;
@@ -69,15 +69,15 @@ namespace OnBreak.BC
         public bool Update()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
 
             try
             {
                 //busco por el id el contenido de la entidad a modificar
-                BD.Cocktail cocktail =
-                    bd.Cocktail.First(e => e.Numero.Equals(this.Numero));
+                DB.Cocktail cocktail =
+                    DB.Cocktail.First(e => e.Numero.Equals(this.Numero));
                 CommonBC.Syncronize(this, cocktail);
-                bd.SaveChanges();
+                DB.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -88,15 +88,15 @@ namespace OnBreak.BC
         public bool Delete()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
 
             try
             {
                 //busco por el id el contenido de la entidad a eliminar
-                BD.Cocktail cocktail =
-                    bd.Cocktail.First(e => e.Numero.Equals(this.Numero));
-                bd.Cocktail.Remove(cocktail);
-                bd.SaveChanges();
+                DB.Cocktail cocktail =
+                    DB.Cocktail.First(e => e.Numero.Equals(this.Numero));
+                DB.Cocktail.Remove(cocktail);
+                DB.SaveChanges();
                 return true;
             }
             catch (Exception)

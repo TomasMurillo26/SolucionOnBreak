@@ -33,6 +33,7 @@ namespace OnBreakWPF
             txtRut1.SetValue(TextBoxHelper.WatermarkProperty, "Ingrese RUT");
 
             cboModalServi.SetValue(TextBoxHelper.WatermarkProperty, "Seleccione");
+            cboModalServi.SelectionChanged += ComboBox_SelectedIndexChanged;
             cboTipoEvento.SetValue(TextBoxHelper.WatermarkProperty, "Seleccione");
             LimpiarControles();
 
@@ -43,7 +44,6 @@ namespace OnBreakWPF
             /* Limpia los controles de texto */
             Contrato contrato = new Contrato();
             CargarTipoEvento();
-            CargarModalidadServicio();
             GridContratos.ItemsSource = contrato.ReadAll();
         }
 
@@ -59,20 +59,51 @@ namespace OnBreakWPF
             cboTipoEvento.SelectedValuePath = "Id"; //Propiedad con el valor a rescatar
 
             cboTipoEvento.SelectedIndex = -1; //Posiciona en el primer registro
+
         }
 
-        public void CargarModalidadServicio()
+        public void CargarModalidadServicio(int tipo)
+        {
+            /* Carga todas las Modalidades de Servicio */
+            if (cboTipoEvento.SelectedItem != null)
+            {
+                ModalidadServicio modalidadServicio = new ModalidadServicio();
+                cboModalServi.ItemsSource = modalidadServicio.ReadAllByTipo(tipo);
+
+                /* Configura los datos en el ComboBox */
+                cboModalServi.DisplayMemberPath = "Nombre"; //Propiedad para mostrar
+                cboModalServi.SelectedValuePath = "Id"; //Propiedad con el valor a rescatar
+
+                cboModalServi.SelectedIndex = -1; //posiciona en el primer registro
+            }
+            return;
+        }
+
+        public void CargarActTipoEvento()
+        {
+            /* Carga todas las Actividades de eventos */
+            TipoEvento tipoEvento = new TipoEvento();
+            cboActualizarTipo.ItemsSource = tipoEvento.ReadAll();
+
+            /* Configura los datos en el ComboBox */
+            cboActualizarTipo.DisplayMemberPath = "Descripcion"; //Propiedad para mostrar
+            cboActualizarTipo.SelectedValuePath = "Id"; //Propiedad con el valor a rescatar
+
+            cboActualizarTipo.SelectedIndex = -1; //Posiciona en el primer registro
+        }
+
+        public void CargarActModalidadServicio()
         {
             /* Carga todas las Modalidades de Servicio */
 
             ModalidadServicio modalidadServicio = new ModalidadServicio();
-            cboModalServi.ItemsSource = modalidadServicio.ReadAll();
+            cboActualizarModalidad.ItemsSource = modalidadServicio.ReadAll();
 
             /* Configura los datos en el ComboBox */
-            cboModalServi.DisplayMemberPath = "Nombre"; //Propiedad para mostrar
-            cboModalServi.SelectedValuePath = "IdModalidad"; //Propiedad con el valor a rescatar
+            cboActualizarModalidad.DisplayMemberPath = "Nombre"; //Propiedad para mostrar
+            cboActualizarModalidad.SelectedValuePath = "Id"; //Propiedad con el valor a rescatar
 
-            cboModalServi.SelectedIndex = -1; //posiciona en el primer registro
+            cboActualizarModalidad.SelectedIndex = -1; //posiciona en el primer registro
         }
 
         private async void btnBuscar2_Click(object sender, RoutedEventArgs e)
@@ -117,7 +148,7 @@ namespace OnBreakWPF
 
             if (cboModalServi.SelectedItem != null && cboTipoEvento.SelectedItem != null)
             {
-                GridContratos.ItemsSource = contrato.FiltrarPorTipoEventoyModalServ((int)cboTipoEvento.SelectedValue, (string)cboModalServi.SelectedValue);
+                GridContratos.ItemsSource = contrato.FiltrarPorTipoEventoyModalServ((int)cboTipoEvento.SelectedValue, (int)cboModalServi.SelectedValue);
                 if (GridContratos.Items.Count == 1)
                 {
                     await this.ShowMessageAsync("Información", "No se encontraron coincidencias.");
@@ -126,7 +157,7 @@ namespace OnBreakWPF
             }
             else if (cboModalServi.SelectedItem != null)
             {
-                GridContratos.ItemsSource = contrato.LeerPorModalidad((string)cboModalServi.SelectedValue);
+                GridContratos.ItemsSource = contrato.LeerPorModalidad((int)cboModalServi.SelectedValue);
                 if (GridContratos.Items.Count == 1)
                 {
                     await this.ShowMessageAsync("Información", "No se encontraron coincidencias.");
@@ -163,6 +194,56 @@ namespace OnBreakWPF
             CrearContrato crearContrato = new CrearContrato();
             this.Close();
             crearContrato.Show();
+        }
+
+        private async void Button_Editar_Click(object sender, RoutedEventArgs e)
+        {
+            Contrato contratoDato = (Contrato)GridContratos.SelectedItem;
+            if (contratoDato == null)
+            {
+                await this.ShowMessageAsync("Alerta", "Debes seleccionar un contrato.");
+                return;
+            }
+            flyout.IsOpen = true;
+            CargarActTipoEvento();
+            CargarActModalidadServicio();
+
+            txtRut.Text = contratoDato.RutCliente;
+            txtAsistentes.Text = contratoDato.Asistentes.ToString();
+            txtPersonal.Text = contratoDato.PersonalAdicional.ToString();
+            txtObservaciones.Text = contratoDato.Observaciones;
+            txtTotal.Text = contratoDato.ValorTotalContrato.ToString();
+            txtNro.Text = contratoDato.Numero;
+            cboActualizarModalidad.SelectedValue = contratoDato.IdModalidad;
+            cboActualizarTipo.SelectedValue = contratoDato.IdTipoEvento;
+        }
+
+        private void btnActualizar_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void CloseFlyout(object sender, RoutedEventArgs e)
+        {
+            flyout.IsOpen = false;
+        }
+
+        private void txtNro_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void ComboBox_SelectedIndexChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Obtener el ComboBox que ha desencadenado el evento
+            ComboBox cboTipoEvento = (ComboBox)sender;
+
+            // Verificar si se ha seleccionado un elemento
+            if (cboTipoEvento.SelectedItem != null)
+            {
+                CargarModalidadServicio((int)cboTipoEvento.SelectedValue);
+            }
+            return;
         }
     }
 }

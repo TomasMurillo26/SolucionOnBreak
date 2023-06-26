@@ -213,7 +213,7 @@ namespace OnBreakWPF
             flyout.IsOpen = true;
             CargarActActividadEmpresas();
             CargarActTipoEmpresas();
-            Console.WriteLine(clidato);
+
             txtRut.Text = clidato.RutCliente;
             txtRazon.Text = clidato.RazonSocial;
             txtNombre.Text = clidato.NombreContacto;
@@ -360,6 +360,11 @@ namespace OnBreakWPF
         }
 
         private void txtRut1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtRut_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }

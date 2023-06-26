@@ -24,11 +24,11 @@ namespace OnBreak.BC
         public List<TipoAmbientacion> ReadAll()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //Crear una lista de DATOS
-                List<BD.TipoAmbientacion> listaDatos = bd.TipoAmbientacion.ToList();
+                List<DB.TipoAmbientacion> listaDatos = DB.TipoAmbientacion.ToList();
                 //Crear una lista de NEGOCIO
                 List<TipoAmbientacion> listaNegocio = GenerarListado(listaDatos);
                 return listaNegocio;
@@ -39,10 +39,10 @@ namespace OnBreak.BC
             }
         }
 
-        private List<TipoAmbientacion> GenerarListado(List<BD.TipoAmbientacion> listaDatos)
+        private List<TipoAmbientacion> GenerarListado(List<DB.TipoAmbientacion> listaDatos)
         {
             List<TipoAmbientacion> listaNegocio = new List<TipoAmbientacion>();
-            foreach (BD.TipoAmbientacion datos in listaDatos)
+            foreach (DB.TipoAmbientacion datos in listaDatos)
             {
                 TipoAmbientacion negocio = new TipoAmbientacion();
                 CommonBC.Syncronize(datos, negocio);

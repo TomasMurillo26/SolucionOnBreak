@@ -9,54 +9,54 @@
       Title="CrearContrato" Height="498"
       WindowStartupLocation="CenterScreen">
 
-    <Grid Margin="0,0,-0.4,-2">
+    <Grid Margin="0,0,-0.667,2.667">
         <Grid.RowDefinitions>
             <RowDefinition Height="18*"/>
             <RowDefinition Height="29*"/>
         </Grid.RowDefinitions>
-        
-        <TextBox HorizontalAlignment="Left" Height="27" Margin="154,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127" Background="#FFF1F0F0"/>
-        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="31" Margin="90,45,0,0" Stroke="White" VerticalAlignment="Top" Width="116"/>
-        <Label Content="Fecha inicio" HorizontalAlignment="Left" Margin="108,45,0,0" VerticalAlignment="Top" Width="80" Foreground="White" Height="35"/>
-        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="31" Margin="227,45,0,0" Stroke="White" VerticalAlignment="Top" Width="116"/>
-        <Label Content="Fecha termino" HorizontalAlignment="Left" Margin="243,45,0,0" VerticalAlignment="Top" Foreground="White" Width="100" Height="26"/>
-        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="31" Margin="90,25.267,0,0" Stroke="White" VerticalAlignment="Top" Width="116" Grid.Row="1"/>
-        <Label Content="Rut Cliente" HorizontalAlignment="Left" Margin="108,25.267,0,0" VerticalAlignment="Top" Height="31" Foreground="White" Width="80" Grid.Row="1"/>
-        <TextBox x:Name="txtRutCli3" HorizontalAlignment="Left" Height="26" Margin="90,61.267,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Grid.Row="1"/>
-        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="31" Margin="90,125,0,0" Stroke="White" VerticalAlignment="Top" Width="116"/>
-        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="31" Margin="227,125,0,0" Stroke="White" VerticalAlignment="Top" Width="116"/>
-        <Label Content="Hora inicio" HorizontalAlignment="Left" Margin="108,125,0,0" VerticalAlignment="Top" Width="80" Foreground="White" Height="36"/>
-        <Label Content="Hora termino" HorizontalAlignment="Left" Margin="243,125,0,0" VerticalAlignment="Top" Width="87" Foreground="White" Height="36"/>
-        <mah:TimePicker x:Name="tpInicio" HorizontalAlignment="Left" Margin="90,161,0,0" VerticalAlignment="Top" Width="116" Height="26" Grid.RowSpan="2"/>
-        <mah:TimePicker x:Name="tpTermino" HorizontalAlignment="Left" Margin="227,161,0,0" VerticalAlignment="Top" Width="116" Height="26" Grid.RowSpan="2"/>
-        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="31" Margin="227,25.267,0,0" Stroke="White" VerticalAlignment="Top" Width="116" Grid.Row="1"/>
-        <Label Content="Asistentes" HorizontalAlignment="Left" Margin="253,25.267,0,0" VerticalAlignment="Top" Height="31" Foreground="White" Width="76" Grid.Row="1"/>
-        <TextBox x:Name="txtAsistentes" HorizontalAlignment="Left" Height="26" Margin="227,61.267,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Grid.Row="1"/>
-        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="31" Margin="459,45,0,0" Stroke="White" VerticalAlignment="Top" Width="116"/>
-        <Label Content="Tipo Evento" HorizontalAlignment="Left" Margin="481,45,0,0" VerticalAlignment="Top" Foreground="White" Width="82" Height="26"/>
-        <ComboBox x:Name="cboTipoEven" HorizontalAlignment="Left" Margin="459,80,0,0" VerticalAlignment="Top" Width="116" Height="27"/>
-        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="31" Margin="596,45,0,0" Stroke="White" VerticalAlignment="Top" Width="116"/>
-        <ComboBox x:Name="cboTipoAmbi" HorizontalAlignment="Left" Margin="596,80,0,0" VerticalAlignment="Top" Width="116" Height="27"/>
-        <Label Content="Tipo Ambientacion" HorizontalAlignment="Left" Margin="596,45,0,0" VerticalAlignment="Top" Foreground="White" Width="116" Height="26"/>
-        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="39" Margin="90,106.267,0,0" Stroke="White" VerticalAlignment="Top" Width="116" Grid.Row="1"/>
-        <Label Content="Modalidades de &#xD;&#xA;servicio" HorizontalAlignment="Left" Margin="90,106.267,0,0" VerticalAlignment="Top" Height="39" Foreground="White" Width="116" Grid.Row="1"/>
-        <ComboBox x:Name="cboModalidadServ" HorizontalAlignment="Left" Margin="227,106.267,0,0" VerticalAlignment="Top" Width="116" Height="39" Grid.Row="1"/>
-        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="30" Margin="90,162.267,0,0" Stroke="White" VerticalAlignment="Top" Width="116" Grid.Row="1"/>
-        <Label Content="Personal Adicional" HorizontalAlignment="Left" Margin="90,162.267,0,0" VerticalAlignment="Top" Height="30" Foreground="White" Width="116" Grid.Row="1"/>
-        <TextBox x:Name="txtPersonAdic" HorizontalAlignment="Left" Height="30" Margin="227,162.267,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Grid.Row="1"/>
-        <CheckBox Content="Comida Vegetariana" HorizontalAlignment="Left" Margin="459,85.267,0,0" VerticalAlignment="Top" Height="30" Width="144" Grid.Row="1"/>
-        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="31" Margin="459,125,0,0" Stroke="White" VerticalAlignment="Top" Width="253"/>
-        <Label Content="Local Para el Evento" HorizontalAlignment="Left" Margin="522,130,0,0" VerticalAlignment="Top" Foreground="White" Width="127" Height="26"/>
-        <RadioButton x:Name="rdOnBreak" Content="Local OnBreak" HorizontalAlignment="Left" Margin="459,174,0,0" VerticalAlignment="Top" Width="116" Height="17" Grid.RowSpan="2"/>
-        <RadioButton x:Name="rdArriendo" Content="Local Arriendo" HorizontalAlignment="Left" Margin="605,174,0,0" VerticalAlignment="Top" Width="107" Height="17" Grid.RowSpan="2"/>
-        <RadioButton Content="Local Cliente" HorizontalAlignment="Left" Margin="538,30.267,0,0" VerticalAlignment="Top" Width="95" Height="16" Grid.Row="1"/>
-        <CheckBox Content="Música Ambiental" HorizontalAlignment="Left" Margin="459,126.267,0,0" VerticalAlignment="Top" Width="144" Height="19" Grid.Row="1"/>
-        <Button x:Name="btnCrearContra" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Content="CREAR" HorizontalAlignment="Left" Margin="637,229,0,0" VerticalAlignment="Top" Width="75" Background="#FF0CC0DF" Foreground="White" Click="btnCrearContra_Click" Height="28" Grid.Row="1" BorderThickness="0"/>
-        <TextBox x:Name="txtObservaciones" HorizontalAlignment="Left" Height="51" Margin="90,229.267,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="253" Grid.Row="1"/>
-        <Label Content="Observaciones" HorizontalAlignment="Left" Margin="90,203.267,0,0" VerticalAlignment="Top" Width="98" Grid.Row="1"/>
-        <DatePicker x:Name="dtTermino" HorizontalAlignment="Left" Margin="227,80,0,0" VerticalAlignment="Top" Width="116" Height="30"/>
-        <DatePicker x:Name="dtInicio" HorizontalAlignment="Left" Margin="90,81,0,0" VerticalAlignment="Top" Height="30" Width="116"/>
-        <Button x:Name="btnVolver" Content="volver" HorizontalAlignment="Left" Margin="538,230,0,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Grid.Row="1" VerticalAlignment="Top" Width="75" Background="#FF0CC0DF" Foreground="White" Click="btnVolver_Click" BorderThickness="0"/>
+
+        <TextBox x:Name="txtNro" HorizontalAlignment="Left" Height="26" Margin="155,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127" Background="#FFF1F0F0"/>
+        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="29" Margin="90,63,0,0" Stroke="White" VerticalAlignment="Top" Width="116"/>
+        <Label Content="Fecha inicio" HorizontalAlignment="Left" Margin="108,63,0,0" VerticalAlignment="Top" Width="80" Foreground="White" Height="33"/>
+        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="29" Margin="227,63,0,0" Stroke="White" VerticalAlignment="Top" Width="116"/>
+        <Label Content="Fecha termino" HorizontalAlignment="Left" Margin="243,63,0,0" VerticalAlignment="Top" Foreground="White" Width="100" Height="25"/>
+        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="30" Margin="90,150,0,0" Stroke="White" VerticalAlignment="Top" Width="116"/>
+        <Label Content="Rut Cliente" HorizontalAlignment="Left" Margin="108,150,0,0" VerticalAlignment="Top" Height="30" Foreground="White" Width="80"/>
+        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="30" Margin="227,150,0,0" Stroke="White" VerticalAlignment="Top" Width="116"/>
+        <Label Content="Asistentes" HorizontalAlignment="Left" Margin="256,151,0,0" VerticalAlignment="Top" Height="30" Foreground="White" Width="65" Grid.RowSpan="2"/>
+        <TextBox x:Name="txtAsistentes" HorizontalAlignment="Left" Height="24" Margin="227,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Grid.Row="1"/>
+        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="29" Margin="459,63,0,0" Stroke="White" VerticalAlignment="Top" Width="116"/>
+        <Label Content="Tipo Evento" HorizontalAlignment="Left" Margin="481,63,0,0" VerticalAlignment="Top" Foreground="White" Width="82" Height="25"/>
+        <ComboBox x:Name="cboTipoEven2" HorizontalAlignment="Left" Margin="459,96,0,0" VerticalAlignment="Top" Width="116" Height="26" SelectionChanged="cboTipoEven_SelectionChanged"/>
+        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="29" Margin="596,63,0,0" Stroke="White" VerticalAlignment="Top" Width="116"/>
+        <ComboBox x:Name="cboTipoAmbi2" HorizontalAlignment="Left" Margin="596,96,0,0" VerticalAlignment="Top" Width="116" Height="26" SelectionChanged="cboTipoAmbi2_SelectionChanged"/>
+        <Label Content="Tipo Ambientacion" HorizontalAlignment="Left" Margin="596,63,0,0" VerticalAlignment="Top" Foreground="White" Width="116" Height="25"/>
+        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="35" Margin="90,55,0,0" Stroke="White" VerticalAlignment="Top" Width="116" Grid.Row="1"/>
+        <Label Content="Modalidades de &#xD;&#xA;servicio" HorizontalAlignment="Left" Margin="90,51,0,0" VerticalAlignment="Top" Height="39" Foreground="White" Width="116" Grid.Row="1"/>
+        <ComboBox x:Name="cboModalidadServ2" HorizontalAlignment="Left" Margin="227,55,0,0" VerticalAlignment="Top" Width="116" Height="35" Grid.Row="1"/>
+        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="27" Margin="90,105,0,0" Stroke="White" VerticalAlignment="Top" Width="116" Grid.Row="1"/>
+        <Label Content="Personal Adicional" HorizontalAlignment="Left" Margin="90,105,0,0" VerticalAlignment="Top" Height="27" Foreground="White" Width="116" Grid.Row="1"/>
+        <TextBox x:Name="txtPersonAdic" HorizontalAlignment="Left" Height="27" Margin="227,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Grid.Row="1"/>
+        <CheckBox x:Name="chkVegetariana" Content="Comida Vegetariana" HorizontalAlignment="Left" Margin="459,83,0,0" VerticalAlignment="Top" Height="22" Width="144" Grid.Row="1" Checked="chkVegetariana_Checked"/>
+        <Rectangle Fill="#FF0CC0DF" HorizontalAlignment="Left" Height="30" Margin="459,139,0,0" Stroke="White" VerticalAlignment="Top" Width="253"/>
+        <Label Content="Local Para el Evento" HorizontalAlignment="Left" Margin="522,144,0,0" VerticalAlignment="Top" Foreground="White" Width="127" Height="25"/>
+        <RadioButton x:Name="rdOnBreak" Content="Local OnBreak" HorizontalAlignment="Left" Margin="459,6.333,0,0" VerticalAlignment="Top" Width="116" Height="26" Grid.Row="1"/>
+        <RadioButton x:Name="rdArriendo" Content="Local Arriendo" HorizontalAlignment="Left" Margin="605,6.333,0,0" VerticalAlignment="Top" Width="107" Height="24" Grid.Row="1" Checked="rdArriendo_Checked"/>
+        <RadioButton x:Name="rdCliente" Content="Local Cliente" HorizontalAlignment="Left" Margin="459,37.333,0,0" VerticalAlignment="Top" Width="95" Height="22" Grid.Row="1"/>
+        <CheckBox x:Name="chkMusica" Content="Música Ambiental" HorizontalAlignment="Left" Margin="459,110,0,0" VerticalAlignment="Top" Width="144" Height="18" Grid.Row="1"/>
+        <Button x:Name="btnCrearContra" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Content="CREAR" HorizontalAlignment="Left" Margin="637,231,0,0" VerticalAlignment="Top" Width="75" Background="#FF0CC0DF" Foreground="White" Click="btnCrearContra_Click" Height="27" Grid.Row="1" BorderThickness="0"/>
+        <TextBox x:Name="txtObservaciones" HorizontalAlignment="Left" Height="53" Margin="90,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="253" Grid.Row="1"/>
+        <Label Content="Observaciones" HorizontalAlignment="Left" Margin="90,143,0,0" VerticalAlignment="Top" Width="98" Grid.Row="1" Height="29"/>
+        <Button x:Name="btnVolver" Content="volver" HorizontalAlignment="Left" Margin="538,232,0,0" Style="{StaticResource MahApps.Styles.Button.Square.Accent}" Grid.Row="1" VerticalAlignment="Top" Width="75" Background="#FF0CC0DF" Foreground="White" Click="btnVolver_Click" BorderThickness="0" Height="24"/>
+        <CheckBox x:Name="chkAmbientacion" Content="Ambientacion" HorizontalAlignment="Left" Margin="459,135.333,0,0" Grid.Row="1" VerticalAlignment="Top" Width="116" Height="20" Checked="chkAmbientacion_Checked"/>
+        <TextBox x:Name="txtValor" HorizontalAlignment="Left" Height="25" Margin="644,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Grid.Row="1"/>
+        <Label Content="Valor" HorizontalAlignment="Left" Margin="602,35,0,0" Grid.Row="1" VerticalAlignment="Top" Height="24"/>
+        <Label Content="Total:" HorizontalAlignment="Left" Margin="459,172,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="-0.112,0.676" Width="47" Height="24"/>
+        <TextBox x:Name="txtValorTotal" HorizontalAlignment="Left" Height="25" Margin="506,172,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="69"/>
+        <TextBlock x:Name="txtRutMessage" HorizontalAlignment="Left" Margin="90,39,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
+        <mah:DateTimePicker x:Name="dtTermino" HorizontalAlignment="Left" Margin="227,100,0,0" VerticalAlignment="Top" Width="116"/>
+        <mah:DateTimePicker x:Name="dtInicio" HorizontalAlignment="Left" Margin="90,99,0,0" VerticalAlignment="Top" Width="116"/>
+        <TextBox x:Name="txtRunCli" HorizontalAlignment="Left" Height="23" Margin="86,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </mah:MetroWindow>

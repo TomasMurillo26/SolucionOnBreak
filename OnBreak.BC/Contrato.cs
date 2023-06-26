@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OnBreak.DB;
 
 namespace OnBreak.BC
 {
@@ -15,7 +16,7 @@ namespace OnBreak.BC
         public DateTime Creacion { get; set; }
         public DateTime Termino { get; set; }
         public string RutCliente { get; set; }
-        public string IdModalidad { get; set; }
+        public int IdModalidad { get; set; }
         public int IdTipoEvento { get; set; }
         public DateTime FechaHoraInicio { get; set; }
         public DateTime FechaHoraTermino { get; set; }
@@ -39,7 +40,7 @@ namespace OnBreak.BC
             Creacion = new DateTime();
             Termino = new DateTime();
             RutCliente = string.Empty;
-            IdModalidad = string.Empty;
+            IdModalidad = 0;
             IdTipoEvento = 0;
             FechaHoraInicio = new DateTime();
             FechaHoraTermino = new DateTime();
@@ -55,20 +56,20 @@ namespace OnBreak.BC
         public bool Create()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
-            BD.Contrato contrato = new BD.Contrato();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
+            DB.Contrato contrato = new DB.Contrato();
             try
             {
-                //sincronizo el contenido de las propiedades a la BD
+                //sincronizo el contenido de las propiedades a la DB
                 CommonBC.Syncronize(this, contrato);
-                bd.Contrato.Add(contrato);
-                bd.SaveChanges();
+                DB.Contrato.Add(contrato);
+                DB.SaveChanges();
 
                 return true;
             }
             catch (Exception)
             {
-                bd.Contrato.Remove(contrato);
+                DB.Contrato.Remove(contrato);
                 return false;
             }
         }
@@ -76,12 +77,12 @@ namespace OnBreak.BC
         public bool Read()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //busco por el id el contenido de la entidad
-                BD.Contrato contrato =
-                    bd.Contrato.First(e => e.Numero.Equals(this.Numero));
+                DB.Contrato contrato =
+                    DB.Contrato.First(e => e.Numero.Equals(this.Numero));
                 CommonBC.Syncronize(contrato, this);
 
                 return true;
@@ -95,14 +96,14 @@ namespace OnBreak.BC
         public bool Update()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //busco por el id el contenido de la entidad a modificar
-                BD.Contrato contrato =
-                    bd.Contrato.First(e => e.Numero.Equals(this.Numero));
+                DB.Contrato contrato =
+                    DB.Contrato.First(e => e.Numero.Equals(this.Numero));
                 CommonBC.Syncronize(this, contrato);
-                bd.SaveChanges();
+                DB.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -114,14 +115,14 @@ namespace OnBreak.BC
         public bool Delete()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //busco por el id el contenido de la entidad a eliminar
-                BD.Contrato contrato =
-                    bd.Contrato.First(e => e.Numero.Equals(this.Numero));
-                bd.Contrato.Remove(contrato);
-                bd.SaveChanges();
+                DB.Contrato contrato =
+                    DB.Contrato.First(e => e.Numero.Equals(this.Numero));
+                DB.Contrato.Remove(contrato);
+                DB.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -134,11 +135,11 @@ namespace OnBreak.BC
         public List<Contrato> ReadAll()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //Crear una lista de DATOS
-                List<BD.Contrato> listaDatos = bd.Contrato.ToList();
+                List<DB.Contrato> listaDatos = DB.Contrato.ToList();
                 //Crear una lista de NEGOCIO
                 List<Contrato> Contrato = GenerarListado(listaDatos);
                 return Contrato;
@@ -149,10 +150,10 @@ namespace OnBreak.BC
             }
         }
 
-        private List<Contrato> GenerarListado(List<BD.Contrato> listaDatos)
+        private List<Contrato> GenerarListado(List<DB.Contrato> listaDatos)
         {
             List<Contrato> listaNegocio = new List<Contrato>();
-            foreach (BD.Contrato datos in listaDatos)
+            foreach (DB.Contrato datos in listaDatos)
             {
                 Contrato contratos = new Contrato();
                 CommonBC.Syncronize(datos, contratos);
@@ -174,7 +175,7 @@ namespace OnBreak.BC
             return listaNegocio;
         }
 
-        public void LeerDescripcionModalidad(string idMod)
+        public void LeerDescripcionModalidad(int idMod)
         {
             ModalidadServicio modalidad = new ModalidadServicio() { Id = idMod };
             if (modalidad.Read())
@@ -202,11 +203,11 @@ namespace OnBreak.BC
 
         public List<Contrato> LeerPorRut(string rutCliente)
         {
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //Crear una lista de DATOS
-                List<BD.Contrato> listaDatos = bd.Contrato.Where(e => e.RutCliente.Equals(rutCliente)).ToList<BD.Contrato>();
+                List<DB.Contrato> listaDatos = DB.Contrato.Where(e => e.RutCliente.Equals(rutCliente)).ToList<DB.Contrato>();
                 //Crear una lista de NEGOCIO
                 List<Contrato> listaNegocio = GenerarListado(listaDatos);
                 return listaNegocio;
@@ -219,11 +220,11 @@ namespace OnBreak.BC
 
         public List<Contrato> LeerPorNro(string nro)
         {
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //Crear una lista de DATOS
-                List<BD.Contrato> listaDatos = bd.Contrato.Where(e => e.Numero.Equals(nro)).ToList<BD.Contrato>();
+                List<DB.Contrato> listaDatos = DB.Contrato.Where(e => e.Numero.Equals(nro)).ToList<DB.Contrato>();
                 //Crear una lista de NEGOCIO
                 List<Contrato> listaNegocio = GenerarListado(listaDatos);
                 return listaNegocio;
@@ -236,11 +237,11 @@ namespace OnBreak.BC
 
         public List<Contrato> LeerPorTipoEvento(int idTipoevento)
         {
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //Crear una lista de DATOS
-                List<BD.Contrato> listaDatos = bd.Contrato.Where(e => e.IdTipoEvento == idTipoevento).ToList<BD.Contrato>();
+                List<DB.Contrato> listaDatos = DB.Contrato.Where(e => e.IdTipoEvento == idTipoevento).ToList<DB.Contrato>();
                 //Crear una lista de NEGOCIO
                 List<Contrato> listaNegocio = GenerarListado(listaDatos);
                 return listaNegocio;
@@ -251,13 +252,13 @@ namespace OnBreak.BC
             }
         }
 
-        public List<Contrato> LeerPorModalidad(string idModalidad)
+        public List<Contrato> LeerPorModalidad(int id)
         {
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //Crear una lista de DATOS
-                List<BD.Contrato> listaDatos = bd.Contrato.Where(e => e.IdModalidad.Equals(idModalidad)).ToList<BD.Contrato>();
+                List<DB.Contrato> listaDatos = DB.Contrato.Where(e => e.IdModalidad == id).ToList<DB.Contrato>();
                 //Crear una lista de NEGOCIO
                 List<Contrato> listaNegocio = GenerarListado(listaDatos);
                 return listaNegocio;
@@ -268,13 +269,13 @@ namespace OnBreak.BC
             }
         }
 
-        public List<Contrato> FiltrarPorTipoEventoyModalServ(int idTipoEvento, string idModalidad)
+        public List<Contrato> FiltrarPorTipoEventoyModalServ(int idTipoEvento, int idModalidad)
         {
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
-                var _idmod = idModalidad.ToString();
-                List<BD.Contrato> listaDatos = bd.Contrato.Where(e => e.IdTipoEvento == idTipoEvento && e.IdModalidad.Equals(_idmod)).ToList();
+                
+                List<DB.Contrato> listaDatos = DB.Contrato.Where(e => e.IdTipoEvento == idTipoEvento && e.IdModalidad == idModalidad).ToList();
 
                 List<Contrato> listaNegocio = GenerarListado(listaDatos);
                 return listaNegocio;

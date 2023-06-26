@@ -64,14 +64,14 @@
     <Compile Include="TipoEvento.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OnBreak.BD\OnBreak.BD.csproj">
-      <Project>{7c28c3e9-9991-4945-bd44-9178fb3a3161}</Project>
-      <Name>OnBreak.BD</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnBreak.DB\OnBreak.DB.csproj">
+      <Project>{27f3b36e-4f66-42af-93a2-39ff26234b8c}</Project>
+      <Name>OnBreak.DB</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

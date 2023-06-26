@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("OnBreak.BD")]
+[assembly: AssemblyTitle("OnBreak.DB")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("OnBreak.BD")]
+[assembly: AssemblyProduct("OnBreak.DB")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("7c28c3e9-9991-4945-bd44-9178fb3a3161")]
+[assembly: Guid("27f3b36e-4f66-42af-93a2-39ff26234b8c")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //

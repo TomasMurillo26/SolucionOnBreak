@@ -25,11 +25,11 @@ namespace OnBreak.BC
         public List<ActividadEmpresa> ReadAll()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //Crear una lista de DATOS
-                List<BD.ActividadEmpresa> listaDatos = bd.ActividadEmpresa.ToList();
+                List<DB.ActividadEmpresa> listaDatos = DB.ActividadEmpresa.ToList();
                 //Crear una lista de NEGOCIO
                 List<ActividadEmpresa> listaNegocio = GenerarListado(listaDatos);
                 return listaNegocio;
@@ -40,10 +40,10 @@ namespace OnBreak.BC
             }
         }
 
-        private List<ActividadEmpresa> GenerarListado(List<BD.ActividadEmpresa> listaDatos)
+        private List<ActividadEmpresa> GenerarListado(List<DB.ActividadEmpresa> listaDatos)
         {
             List<ActividadEmpresa> listaNegocio = new List<ActividadEmpresa>();
-            foreach (BD.ActividadEmpresa datos in listaDatos)
+            foreach (DB.ActividadEmpresa datos in listaDatos)
             {
                 ActividadEmpresa negocio = new ActividadEmpresa();
                 CommonBC.Syncronize(datos, negocio);
@@ -55,20 +55,20 @@ namespace OnBreak.BC
         public bool Create()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
-            BD.ActividadEmpresa actividadEmpresa = new BD.ActividadEmpresa();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
+            DB.ActividadEmpresa actividadEmpresa = new DB.ActividadEmpresa();
             try
             {
-                //sincronizo el contenido de las propiedades a la BD
+                //sincronizo el contenido de las propiedades a la DB
                 CommonBC.Syncronize(this, actividadEmpresa);
-                bd.ActividadEmpresa.Add(actividadEmpresa);
-                bd.SaveChanges();
+                DB.ActividadEmpresa.Add(actividadEmpresa);
+                DB.SaveChanges();
 
                 return true;
             }
             catch (Exception)
             {
-                bd.ActividadEmpresa.Remove(actividadEmpresa);
+                DB.ActividadEmpresa.Remove(actividadEmpresa);
                 return false;
             }
         }
@@ -76,12 +76,12 @@ namespace OnBreak.BC
         public bool Read()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //busco por el id el contenido de la entidad
-                BD.ActividadEmpresa actividadEmpresa =
-                    bd.ActividadEmpresa.First(e => e.Id.Equals(this.Id));
+                DB.ActividadEmpresa actividadEmpresa =
+                    DB.ActividadEmpresa.First(e => e.Id.Equals(this.Id));
                 CommonBC.Syncronize(actividadEmpresa, this);
 
                 return true;
@@ -95,15 +95,15 @@ namespace OnBreak.BC
         public bool Update()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
 
             try
             {
                 //busco por el id el contenido de la entidad a modificar
-                BD.ActividadEmpresa actividadEmpresa =
-                    bd.ActividadEmpresa.First(e => e.Id.Equals(this.Id));
+                DB.ActividadEmpresa actividadEmpresa =
+                    DB.ActividadEmpresa.First(e => e.Id.Equals(this.Id));
                 CommonBC.Syncronize(this, actividadEmpresa);
-                bd.SaveChanges();
+                DB.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -114,15 +114,15 @@ namespace OnBreak.BC
         public bool Delete()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
 
             try
             {
                 //busco por el id el contenido de la entidad a eliminar
-                BD.ActividadEmpresa actividadEmpresa =
-                    bd.ActividadEmpresa.First(e => e.Id.Equals(this.Id));
-                bd.ActividadEmpresa.Remove(actividadEmpresa);
-                bd.SaveChanges();
+                DB.ActividadEmpresa actividadEmpresa =
+                    DB.ActividadEmpresa.First(e => e.Id.Equals(this.Id));
+                DB.ActividadEmpresa.Remove(actividadEmpresa);
+                DB.SaveChanges();
                 return true;
             }
             catch (Exception)

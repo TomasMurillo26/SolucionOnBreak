@@ -44,20 +44,20 @@ namespace OnBreak.BC
         public bool Create()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
-            BD.Cliente cliente = new BD.Cliente();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
+            DB.Cliente cliente = new DB.Cliente();
             try
             {
-                //sincronizo el contenido de las propiedades a la BD
+                //sincronizo el contenido de las propiedades a la DB
                 CommonBC.Syncronize(this, cliente);
-                bd.Cliente.Add(cliente);
-                bd.SaveChanges();
+                DB.Cliente.Add(cliente);
+                DB.SaveChanges();
 
                 return true;
             }
             catch (Exception)
             {
-                bd.Cliente.Remove(cliente);
+                DB.Cliente.Remove(cliente);
                 return false;
             }
         }
@@ -65,12 +65,12 @@ namespace OnBreak.BC
         public bool Read()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //busco por el id el contenido de la entidad
-                BD.Cliente cliente =
-                    bd.Cliente.First(e => e.RutCliente.Equals(this.RutCliente));
+                DB.Cliente cliente =
+                    DB.Cliente.First(e => e.RutCliente.Equals(this.RutCliente));
                 CommonBC.Syncronize(cliente, this);
 
                 return true;
@@ -84,15 +84,15 @@ namespace OnBreak.BC
         public bool Update()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
 
             try
             {
                 //busco por el id el contenido de la entidad a modificar
-                BD.Cliente cliente =
-                    bd.Cliente.First(e => e.RutCliente.Equals(this.RutCliente));
+                DB.Cliente cliente =
+                    DB.Cliente.First(e => e.RutCliente.Equals(this.RutCliente));
                 CommonBC.Syncronize(this, cliente);
-                bd.SaveChanges();
+                DB.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -103,15 +103,15 @@ namespace OnBreak.BC
         public bool Delete()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
 
             try
             {
                 //busco por el id el contenido de la entidad a eliminar
-                BD.Cliente cliente =
-                    bd.Cliente.First(e => e.RutCliente.Equals(this.RutCliente));
-                bd.Cliente.Remove(cliente);
-                bd.SaveChanges();
+                DB.Cliente cliente =
+                    DB.Cliente.First(e => e.RutCliente.Equals(this.RutCliente));
+                DB.Cliente.Remove(cliente);
+                DB.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -146,10 +146,10 @@ namespace OnBreak.BC
             }
         }
 
-        private List<Cliente> GenerarListado(List<BD.Cliente> listaDatos)
+        private List<Cliente> GenerarListado(List<DB.Cliente> listaDatos)
         {
             List<Cliente> listaNegocio = new List<Cliente>();
-            foreach (BD.Cliente datos in listaDatos)
+            foreach (DB.Cliente datos in listaDatos)
             {
                 Cliente clientes = new Cliente();
                 CommonBC.Syncronize(datos, clientes);
@@ -165,17 +165,17 @@ namespace OnBreak.BC
         public List<Cliente> BuscarClientes(string rutCliente)
         {
             // Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 // Buscar coincidencias exactas
-                var exactMatches = bd.Cliente.Where(c => c.RutCliente == rutCliente).ToList();
+                var exactMatches = DB.Cliente.Where(c => c.RutCliente == rutCliente).ToList();
 
                 // Buscar coincidencias parciales
-                var partialMatches = bd.Cliente.Where(c => c.RutCliente.Contains(rutCliente) && c.RutCliente != rutCliente).ToList();
+                var partialMatches = DB.Cliente.Where(c => c.RutCliente.Contains(rutCliente) && c.RutCliente != rutCliente).ToList();
 
                 // Combinar resultados
-                List<BD.Cliente> listaDatos = new List<BD.Cliente>();
+                List<DB.Cliente> listaDatos = new List<DB.Cliente>();
                 listaDatos.AddRange(exactMatches);
                 listaDatos.AddRange(partialMatches);
 
@@ -192,11 +192,11 @@ namespace OnBreak.BC
         public List<Cliente> ReadAll()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //Crear una lista de DATOS
-                List<BD.Cliente> listaDatos = bd.Cliente.ToList();
+                List<DB.Cliente> listaDatos = DB.Cliente.ToList();
                 //Crear una lista de NEGOCIO
                 List<Cliente> listaNegocio = GenerarListado(listaDatos);
                 return listaNegocio;
@@ -209,11 +209,11 @@ namespace OnBreak.BC
 
         public List<Cliente> LeerTipoEmpresa(int tipEmpresa)
         {
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
 
-                List<BD.Cliente> listaDatos = bd.Cliente.Where(e => e.IdTipoEmpresa == tipEmpresa).ToList();
+                List<DB.Cliente> listaDatos = DB.Cliente.Where(e => e.IdTipoEmpresa == tipEmpresa).ToList();
 
                 List<Cliente> listaNegocio = GenerarListado(listaDatos);
                 return listaNegocio;
@@ -226,11 +226,11 @@ namespace OnBreak.BC
 
         public List<Cliente> LeerActividadEmpresa(int actEmpresa)
         {
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
 
-                List<BD.Cliente> listaDatos = bd.Cliente.Where(e => e.IdActividadEmpresa == actEmpresa).ToList();
+                List<DB.Cliente> listaDatos = DB.Cliente.Where(e => e.IdActividadEmpresa == actEmpresa).ToList();
 
                 List<Cliente> listaNegocio = GenerarListado(listaDatos);
                 return listaNegocio;
@@ -243,10 +243,10 @@ namespace OnBreak.BC
 
         public List<Cliente> FiltrarPorTipoYActividadEmpresa(int idTipoEmpresa, int idActividadEmpresa)
         {
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
-                List<BD.Cliente> listaDatos = bd.Cliente.Where(e => e.IdTipoEmpresa == idTipoEmpresa && e.IdActividadEmpresa == idActividadEmpresa).ToList();
+                List<DB.Cliente> listaDatos = DB.Cliente.Where(e => e.IdTipoEmpresa == idTipoEmpresa && e.IdActividadEmpresa == idActividadEmpresa).ToList();
 
                 List<Cliente> listaNegocio = GenerarListado(listaDatos);
                 return listaNegocio;

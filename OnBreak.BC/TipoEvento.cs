@@ -25,12 +25,12 @@ namespace OnBreak.BC
         public bool Read()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //busco por el id el contenido de la entidad
-                BD.TipoEvento contrato =
-                    bd.TipoEvento.First(e => e.Id.Equals(this.Id));
+                DB.TipoEvento contrato =
+                    DB.TipoEvento.First(e => e.Id.Equals(this.Id));
                 CommonBC.Syncronize(contrato, this);
 
                 return true;
@@ -43,11 +43,11 @@ namespace OnBreak.BC
         public List<TipoEvento> ReadAll()
         {
             //Crear una conexión al Entities
-            BD.OnbreakEntities bd = new BD.OnbreakEntities();
+            DB.onbreakEntities DB = new DB.onbreakEntities();
             try
             {
                 //Crear una lista de DATOS
-                List<BD.TipoEvento> listaDatos = bd.TipoEvento.ToList();
+                List<DB.TipoEvento> listaDatos = DB.TipoEvento.ToList();
                 //Crear una lista de NEGOCIO
                 List<TipoEvento> listaNegocio = GenerarListado(listaDatos);
                 return listaNegocio;
@@ -58,10 +58,10 @@ namespace OnBreak.BC
             }
         }
 
-        private List<TipoEvento> GenerarListado(List<BD.TipoEvento> listaDatos)
+        private List<TipoEvento> GenerarListado(List<DB.TipoEvento> listaDatos)
         {
             List<TipoEvento> listaNegocio = new List<TipoEvento>();
-            foreach (BD.TipoEvento datos in listaDatos)
+            foreach (DB.TipoEvento datos in listaDatos)
             {
                 TipoEvento negocio = new TipoEvento();
                 CommonBC.Syncronize(datos, negocio);
