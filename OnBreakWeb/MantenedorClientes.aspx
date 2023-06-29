@@ -14,16 +14,9 @@
     }
         .auto-style11 {
             height: 30px;
-            width: 180px;
+            width: 134px;
         }
-        .auto-style12 {
-            height: 23px;
-            width: 180px;
-        }
-        .auto-style13 {
-            width: 180px;
-        }
-    .auto-style14 {
+        .auto-style14 {
             height: 23px;
             width: 316px;
         }
@@ -31,7 +24,7 @@
             width: 316px;
         }
         .auto-style16 {
-            width: 180px;
+            width: 134px;
             height: 33px;
         }
         .auto-style17 {
@@ -42,7 +35,7 @@
             height: 33px;
         }
         .auto-style19 {
-            width: 180px;
+            width: 134px;
             height: 29px;
         }
         .auto-style20 {
@@ -52,12 +45,19 @@
         .auto-style21 {
             height: 29px;
         }
+        .auto-style22 {
+            height: 23px;
+            width: 134px;
+        }
+        .auto-style23 {
+            width: 134px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table style="width:100%;">
         <tr>
-            <td class="auto-style12"></td>
+            <td class="auto-style22"></td>
             <td class="auto-style14"></td>
             <td class="auto-style1"></td>
         </tr>
@@ -71,21 +71,21 @@
 &nbsp;&nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style12">Razon Social:</td>
+            <td class="auto-style22">Razon Social:</td>
             <td class="auto-style14">
                 <asp:TextBox ID="txtRazSocial" runat="server" Width="226px"></asp:TextBox>
             </td>
             <td class="auto-style1">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNombre" ErrorMessage="RequiredFieldValidator">*Obligatorio</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtRazSocial" ErrorMessage="RequiredFieldValidator">*Obligatorio</asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
-            <td class="auto-style13">Nombre:</td>
+            <td class="auto-style23">Nombre:</td>
             <td class="auto-style15">
                 <asp:TextBox ID="txtNombre" runat="server" Width="224px"></asp:TextBox>
             </td>
             <td>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtApellido" ErrorMessage="RequiredFieldValidator">*Obligatorio</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtNombre" ErrorMessage="RequiredFieldValidator">*Obligatorio</asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
@@ -132,7 +132,7 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style13">&nbsp;</td>
+            <td class="auto-style23">&nbsp;</td>
             <td class="auto-style15">
                 &nbsp;</td>
             <td>
@@ -148,19 +148,19 @@
             </td>
         </tr>
         <tr>
-            <td class="auto-style13">&nbsp;</td>
+            <td class="auto-style23">&nbsp;</td>
             <td class="auto-style15">&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style13">&nbsp;</td>
+            <td class="auto-style23">&nbsp;</td>
             <td class="auto-style9" colspan="2">
                 <asp:GridView ID="gdClientes" runat="server">
                 </asp:GridView>
             </td>
         </tr>
         <tr>
-            <td class="auto-style13">&nbsp;</td>
+            <td class="auto-style23">&nbsp;</td>
             <td class="auto-style15">&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
