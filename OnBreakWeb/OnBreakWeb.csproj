@@ -71,10 +71,18 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MantenedorClientes.aspx" />
     <Content Include="Principal.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MantenedorClientes.aspx.cs">
+      <DependentUpon>MantenedorClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MantenedorClientes.aspx.designer.cs">
+      <DependentUpon>MantenedorClientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -100,6 +108,7 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnBreak.BC\OnBreak.BC.csproj">
