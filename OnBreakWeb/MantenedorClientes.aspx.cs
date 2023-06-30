@@ -36,7 +36,7 @@ namespace OnBreakWeb
             ActividadEmpresa actEmp = new ActividadEmpresa();
             cboActEmpresa.DataValueField = "Id";
             cboActEmpresa.DataTextField = "Descripcion";
-            cboEmpresa.DataSource = actEmp.ReadAll();
+            cboActEmpresa.DataSource = actEmp.ReadAll();
             cboActEmpresa.DataBind();
         }
 
