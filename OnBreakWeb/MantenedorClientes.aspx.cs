@@ -16,7 +16,7 @@ namespace OnBreakWeb
              * y quedo con el primer elemento seleccionado*/
             if (!IsPostBack)
             {
-                /*CargarEmpresa();*/
+                CargarEmpresa();
                 CargarActEmp();
                 CargarGrilla();
             }
@@ -25,30 +25,31 @@ namespace OnBreakWeb
         private void CargarGrilla()
         {
             /*cargo todos los empleados de la BD en la grilla*/
-            Cliente cliente = new Cliente();
-            gdClientes.DataSource = cliente.ReadAll();
+            WebServices.OBServiciosSoapClient misServicios =
+                new WebServices.OBServiciosSoapClient();
+            gdClientes.DataSource = misServicios.ReadAllClientes();
             gdClientes.DataBind();
         }
 
         private void CargarActEmp()
         {
-            Cliente cliente = new Cliente();
+            ActividadEmpresa actEmp = new ActividadEmpresa();
             cboActEmpresa.DataValueField = "Id";
             cboActEmpresa.DataTextField = "Descripcion";
-            cboEmpresa.DataSource = cliente.ReadAll();
+            cboEmpresa.DataSource = actEmp.ReadAll();
             cboActEmpresa.DataBind();
         }
 
 
-        /*private void CargarEmpresa()
+        private void CargarEmpresa()
         {
-            Cliente cliente = new Cliente();
+            TipoEmpresa tipoEmpresa = new TipoEmpresa();
             cboEmpresa.DataValueField = "Id";
             cboEmpresa.DataTextField = "Descripcion";
-            cboEmpresa.DataSource = cliente.ReadAll();
+            cboEmpresa.DataSource = tipoEmpresa.ReadAll();
             cboEmpresa.DataBind();
-        } 
-        */
+        }
+
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
