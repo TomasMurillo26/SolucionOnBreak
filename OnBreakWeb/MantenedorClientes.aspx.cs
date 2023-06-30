@@ -72,7 +72,7 @@ namespace OnBreakWeb
             }
             else
             {
-                lblMsg.Text = "Empleado No pudo ser registrado";
+                lblMsg.Text = "Cliente pudo ser registrado";
             }
 
             
