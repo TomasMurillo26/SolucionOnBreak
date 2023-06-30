@@ -1,174 +1,149 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="MantenedorClientes.aspx.cs" Inherits="OnBreakWeb.MantenedorClientes" %>
 
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        .auto-style6 {
-            height: 30px;
+        body {
+            font-family: Arial, sans-serif;
         }
-        .auto-style8 {
-            height: 30px;
-            width: 316px;
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        .auto-style9 {
-    }
-        .auto-style11 {
-            height: 30px;
-            width: 134px;
+        
+        .form-group {
+            margin-bottom: 20px;
         }
-        .auto-style14 {
-            height: 23px;
-            width: 316px;
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
-    .auto-style15 {
-            width: 316px;
+        
+        .form-control {
+            width: 100%;
+            padding: 5px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
         }
-        .auto-style16 {
-            width: 134px;
-            height: 33px;
+        
+        .error-message {
+            color: red;
+            font-size: 12px;
         }
-        .auto-style17 {
-            width: 316px;
-            height: 33px;
+        
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            color: #fff;
+            background-color: #007bff;
+            border: 1px solid #007bff;
+            border-radius: 3px;
         }
-        .auto-style18 {
-            height: 33px;
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
         }
-        .auto-style19 {
-            width: 134px;
-            height: 29px;
+        
+        .table th,
+        .table td {
+            padding: 8px;
+            border: 1px solid #ccc;
         }
-        .auto-style20 {
-            width: 316px;
-            height: 29px;
+        
+        .table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
         }
-        .auto-style21 {
-            height: 29px;
+
+        .table-container {
+            margin: 0 auto;
+            text-align: center;
         }
-        .auto-style22 {
-            height: 23px;
-            width: 134px;
-        }
-        .auto-style23 {
-            width: 134px;
-        }
+
     </style>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table style="width:100%;">
-        <tr>
-            <td class="auto-style22"></td>
-            <td class="auto-style14"></td>
-            <td class="auto-style1"></td>
-        </tr>
-        <tr>
-            <td class="auto-style11">Rut:</td>
-            <td class="auto-style8">
-                <asp:TextBox ID="txtRut" runat="server"></asp:TextBox>
-                &nbsp;</td>
-            <td class="auto-style6">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtRut">*Obligatorio</asp:RequiredFieldValidator>
-&nbsp;&nbsp;</td>
-        </tr>
-        <tr>
-            <td class="auto-style22">Razon Social:</td>
-            <td class="auto-style14">
-                <asp:TextBox ID="txtRazSocial" runat="server" Width="226px"></asp:TextBox>
-            </td>
-            <td class="auto-style1">
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtRazSocial" ErrorMessage="RequiredFieldValidator">*Obligatorio</asp:RequiredFieldValidator>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style23">Nombre:</td>
-            <td class="auto-style15">
-                <asp:TextBox ID="txtNombre" runat="server" Width="224px"></asp:TextBox>
-            </td>
-            <td>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtNombre" ErrorMessage="RequiredFieldValidator">*Obligatorio</asp:RequiredFieldValidator>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style19">Correo:</td>
-            <td class="auto-style20">
-                <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-            </td>
-            <td class="auto-style21">
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" ErrorMessage="RegularExpressionValidator" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">Error de formato</asp:RegularExpressionValidator>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style19">Dirección:</td>
-            <td class="auto-style20">
-                <asp:TextBox ID="txtDireccion" runat="server"></asp:TextBox>
-            </td>
-            <td class="auto-style21">
-                &nbsp;</td>
-        </tr>
-        <tr>
-            <td class="auto-style19">Teléfono:</td>
-            <td class="auto-style20">
-                <asp:TextBox ID="txtTelefono" runat="server"></asp:TextBox>
-            </td>
-            <td class="auto-style21">
-                &nbsp;</td>
-        </tr>
-        <tr>
-            <td class="auto-style19">Empresa:</td>
-            <td class="auto-style20">
-                <asp:DropDownList ID="cboEmpresa" runat="server">
-                </asp:DropDownList>
-            </td>
-            <td class="auto-style21">
-                &nbsp;</td>
-        </tr>
-        <tr>
-            <td class="auto-style19">Actividad Empresa:</td>
-            <td class="auto-style20">
-                <asp:DropDownList ID="cboActEmpresa" runat="server">
-                </asp:DropDownList>
-            </td>
-            <td class="auto-style21">
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style23">&nbsp;</td>
-            <td class="auto-style15">
-                &nbsp;</td>
-            <td>
-                &nbsp;</td>
-        </tr>
-        <tr>
-            <td class="auto-style16"></td>
-            <td class="auto-style17">
-                <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" />
-            </td>
-            <td class="auto-style18">
-                <asp:Label ID="lblMsg" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style23">&nbsp;</td>
-            <td class="auto-style15">&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td class="auto-style23">&nbsp;</td>
-            <td class="auto-style9" colspan="2">
-                <asp:GridView ID="gdClientes" runat="server">
-                </asp:GridView>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style23">&nbsp;</td>
-            <td class="auto-style15">&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-    </table>
+    <div class="container">
+        
+        <div class="content">
+            <div class="inner-content">
+                <h2>Mantenedor de Clientes</h2>
+        
+        <div class="form-group">
+            <label for="txtRut">Rut:</label>
+            <asp:TextBox ID="txtRut" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtRut" ErrorMessage="*Obligatorio" CssClass="error-message"></asp:RequiredFieldValidator>
+        </div>
+        
+        <div class="form-group">
+            <label for="txtRazSocial">Razón Social:</label>
+            <asp:TextBox ID="txtRazSocial" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtRazSocial" ErrorMessage="*Obligatorio" CssClass="error-message"></asp:RequiredFieldValidator>
+        </div>
+        
+        <div class="form-group">
+            <label for="txtNombre">Nombre:</label>
+            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtNombre" ErrorMessage="*Obligatorio" CssClass="error-message"></asp:RequiredFieldValidator>
+        </div>
+        
+        <div class="form-group">
+            <label for="txtEmail">Correo:</label>
+            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" ErrorMessage="Error de formato" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" CssClass="error-message"></asp:RegularExpressionValidator>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtEmail" ErrorMessage="*Obligatorio" CssClass="error-message"></asp:RequiredFieldValidator>
+        </div>
+        
+        <div class="form-group">
+            <label for="txtDireccion">Dirección:</label>
+            <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtDireccion" ErrorMessage="*Obligatorio" CssClass="error-message"></asp:RequiredFieldValidator>
+        </div>
+        
+        <div class="form-group">
+            <label for="txtTelefono">Teléfono:</label>
+            <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control"></asp:TextBox>
+        </div>
+        
+        <div class="form-group">
+            <label for="cboEmpresa">Empresa:</label>
+            <asp:DropDownList ID="cboEmpresa" runat="server" CssClass="form-control"></asp:DropDownList>
+        </div>
+        
+        <div class="form-group">
+            <label for="cboActEmpresa">Actividad Empresa:</label>
+            <asp:DropDownList ID="cboActEmpresa" runat="server" CssClass="form-control"></asp:DropDownList>
+        </div>
+        
+        <div class="form-group">
+            <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" CssClass="btn" />
+            <asp:Label ID="lblMsg" runat="server"></asp:Label>
+        </div>
+        <div class="form-group">
+            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" OnClick="btnLimpiar_Click" CssClass="btn" />
+        </div>
+      </div>
+     </div>
+   </div>
+    <div class="table-container">
+        <table class="table">
+            <tbody>
+                <asp:GridView ID="gdClientes" runat="server" CssClass="table"></asp:GridView>
+            </tbody>
+        </table>
+    </div>
+
+
+
 </asp:Content>
-
-
-
-
-
-

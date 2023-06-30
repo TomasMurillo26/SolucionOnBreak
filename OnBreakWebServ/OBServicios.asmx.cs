@@ -54,5 +54,19 @@ namespace OnBreakWebServ
             Cliente cliente = new Cliente() { RutCliente = rutCliente };
             return cliente.Delete();
         }
+
+        [WebMethod]
+        public List<ActividadEmpresa> ReadAllAct()
+        {
+            ActividadEmpresa actEmp = new ActividadEmpresa();
+            return actEmp.ReadAll();
+        }
+
+        [WebMethod]
+        public List<TipoEmpresa> ReadAllTipo()
+        {
+            TipoEmpresa tipoEmp = new TipoEmpresa();
+            return tipoEmp.ReadAll();
+        }
     }
 }

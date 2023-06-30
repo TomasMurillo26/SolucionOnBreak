@@ -16,6 +16,9 @@ namespace OnBreakWeb
              * y quedo con el primer elemento seleccionado*/
             if (!IsPostBack)
             {
+                cboEmpresa.Items.Insert(0, new ListItem("Seleccione", ""));
+                cboActEmpresa.Items.Insert(0, new ListItem("Seleccione", ""));
+            
                 CargarEmpresa();
                 CargarActEmp();
                 CargarGrilla();
@@ -33,20 +36,22 @@ namespace OnBreakWeb
 
         private void CargarActEmp()
         {
-            ActividadEmpresa actEmp = new ActividadEmpresa();
+            WebServices.OBServiciosSoapClient misServicios =
+                new WebServices.OBServiciosSoapClient();
             cboActEmpresa.DataValueField = "Id";
             cboActEmpresa.DataTextField = "Descripcion";
-            cboActEmpresa.DataSource = actEmp.ReadAll();
+            cboActEmpresa.DataSource = misServicios.ReadAllAct();
             cboActEmpresa.DataBind();
         }
 
 
         private void CargarEmpresa()
         {
-            TipoEmpresa tipoEmpresa = new TipoEmpresa();
+            WebServices.OBServiciosSoapClient misServicios =
+                new WebServices.OBServiciosSoapClient();
             cboEmpresa.DataValueField = "Id";
             cboEmpresa.DataTextField = "Descripcion";
-            cboEmpresa.DataSource = tipoEmpresa.ReadAll();
+            cboEmpresa.DataSource = misServicios.ReadAllTipo();
             cboEmpresa.DataBind();
         }
 
@@ -66,10 +71,12 @@ namespace OnBreakWeb
                 IdActividadEmpresa = int.Parse(cboActEmpresa.SelectedValue)
 
             };
+            Console.WriteLine(cli);
             if (cli.Create())
             {
                 lblMsg.Text = "Cliente Registrado con Éxito";
                 LimpiarControles();
+                CargarGrilla();
             }
             else
             {
@@ -89,6 +96,11 @@ namespace OnBreakWeb
             txtDireccion.Text = string.Empty;
             txtTelefono.Text = string.Empty;
 
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarControles();
         }
     }
 }

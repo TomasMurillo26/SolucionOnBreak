@@ -151,13 +151,13 @@ namespace OnBreak.BC
             List<Cliente> listaNegocio = new List<Cliente>();
             foreach (DB.Cliente datos in listaDatos)
             {
-                Cliente clientes = new Cliente();
-                CommonBC.Syncronize(datos, clientes);
+                Cliente cliente = new Cliente();
+                CommonBC.Syncronize(datos, cliente);
 
-                clientes.LeerDescripcionAct(clientes.IdActividadEmpresa);
-                clientes.LeerDescripcionTipo(clientes.IdTipoEmpresa);
+                cliente.LeerDescripcionAct(cliente.IdActividadEmpresa);
+                cliente.LeerDescripcionTipo(cliente.IdTipoEmpresa);
 
-                listaNegocio.Add(clientes);
+                listaNegocio.Add(cliente);
             }
             return listaNegocio;
         }
